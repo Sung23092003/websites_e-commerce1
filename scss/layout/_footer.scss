@@ -1,0 +1,295 @@
+
+.fe-footer {
+  background-color: #fff;
+}
+.payment-accept {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.scroll-top-btn {
+    position: fixed;
+    bottom: 48px;
+    right: 20px;
+    background-color: #201E1F;
+    color: #fff;
+    border: 2px solid #FFFFFF;
+    border-radius: 3px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 99;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    overflow: hidden;
+}
+.scroll-top-btn .fa-arrow-up{
+    transition: transform 0.3s, opacity 0.3s;
+}
+.scroll-top-btn:hover .fa-arrow-up{
+    transform: translateY(-34px);
+}
+.hover-text {
+    display: block;
+    margin-top: 10px;
+    font-weight: 500;
+    transition: transform 0.3s, opacity 0.3s;
+}
+.scroll-top-btn:hover .hover-text {
+    transform: translateY(-34px);
+}
+.scroll-top-btn i {
+    font-size: 16px;
+}
+.link_chat_social {
+    bottom: 116px;
+    right: 20px;
+    z-index: 999999;
+}
+.link_chat_social img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    padding: 8px;
+}
+
+@media (max-width: 575px) {
+    .link_chat_social {
+        bottom: 72px;
+        right: 0;
+    }
+    .scroll-top-btn {
+        display: none!important;
+    }
+    .link_chat_social img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        padding: 6px;
+    }
+    .phone-vr-circle-fill {
+        width: 40px !important;
+        height: 40px !important;
+        border: unset !important;
+    }
+}
+.link_chat_social>* {
+    margin-top: 26px;
+}
+.link_chat_social .link_call .phone-vr-circle-fill {
+    box-shadow: 0 0 0 0 #92e968;
+    background-color: rgb(162 243 124);
+}
+.link_chat_social .link_chat_zalo .phone-vr-circle-fill {
+    box-shadow: 0 0 0 0 #6badf3;
+    background-color: rgb(118 176 237);
+}
+.link_chat_social .link_chat_facebook .phone-vr-circle-fill {
+    box-shadow: 0 0 0 0 #8daaf1;
+    background-color: rgb(106 148 253);
+}
+.link_chat_social .link_chat_email .phone-vr-circle-fill {
+    box-shadow: 0 0 0 0 #ffcca0;
+    background-color: rgb(255 191 138);
+}
+.phone-vr-img-circle img {
+    animation: phonering-alo-circle-img-anim 1s infinite ease-in-out;
+}
+@keyframes phonering-alo-circle-img-anim {
+    0% {
+        transform: rotate(0) scale(1) skew(1deg);
+    }
+    10% {
+        transform: rotate(-25deg) scale(1) skew(1deg);
+    }
+    20% {
+        transform: rotate(25deg) scale(1) skew(1deg);
+    }
+    30% {
+        transform: rotate(-25deg) scale(1) skew(1deg);
+    }
+    40% {
+        transform: rotate(25deg) scale(1) skew(1deg);
+    }
+    50% {
+        transform: rotate(0) scale(1) skew(1deg);
+    }
+    100% {
+        transform: rotate(0) scale(1) skew(1deg);
+    }
+}
+.phone-vr-circle-fill {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    box-shadow: 0 0 0 0 #fd4b4b;
+    background-color: rgb(253, 75, 75);
+    border-radius: 50%;
+    border: 23px solid transparent;
+    animation: zoom 1.3s infinite ease-in-out;
+    transition: all .5s;
+    transform-origin: 50% 50%;
+}
+@keyframes zoom {
+    0% {
+        transform: scale(.9);
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 15px transparent;
+    }
+    100% {
+        transform: scale(.9);
+        box-shadow: 0 0 0 0 transparent;
+    }
+}
+.phone-vr-img-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.phone-vr-img-circle i {
+  position: static!important;
+}
+.link-is-scroll {
+  opacity: 0;
+  transition: all .3s;
+}
+.is-scrolling {
+  .link-is-scroll {
+    opacity: 1;
+  }
+}
+.footer-2,
+.footer-3 {
+    position: relative;
+    padding: 24px 0 0;
+    color: rgba(255,255,255,.8);
+    z-index: 1;
+    border-top: 3px solid var(--primary);
+    @include min_lg {
+        padding: 32px 0 0;
+        border-top-width: 4px;
+    }
+    a:hover {
+        color: #fff;
+    }
+    .bg {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        height: 100%;
+        &:before {
+            position: absolute;
+            content: "";
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0,0,0,.4);
+        }
+        &-img {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            z-index: -2;
+        }
+    }
+    .container {
+        position: relative;
+        z-index: 1;
+    }
+    .logo-f {
+        // width: 200px;
+        // margin-bottom: -12px;
+        // @include min_md {
+        // width: 265px;}
+        img {
+            max-width:100%;
+        }
+    }
+    .ttl-f {
+        position: relative;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(255,255,255,.3);
+        // @include min_2xl {margin-right: 24px;}
+        &::before {
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            height: 2px;
+            background-color: #fff;
+            content:"";
+            display: block;
+            width: 50px;
+        }
+    }
+    .images-bct {
+        padding-right: 20px;
+        padding-left: 8px;
+        max-width:140px;
+        @include min_sm {
+        max-width:190px;}
+    }
+    address {
+        display: block;
+        background-color: rgba(0,0,0,.4);
+        text-align: center;
+        margin-bottom: 0;
+        font-size: 12px;
+        font-style: normal;
+        padding: 12px 16px;
+        margin-top: 16px;
+        color: rgba(255,255,255,.8);
+        @include min_sm {
+            br {display: none;}
+        }
+    }
+    .list-social {
+        @include max-sm {
+            margin-right: -12px;
+        }
+    }
+    .menu-f {
+        li {
+            &+li {
+                border-top: 1px solid rgba(255,255,255,.2);
+                padding-top: 10px;
+            }
+        }
+    }
+    .ttl-sub {
+        overflow: hidden;
+        border-bottom: 1px solid var(--primary);
+        span {
+            display: inline-block;
+            background-color: var(--primary);
+            padding: 8px 12px;
+            position: relative;
+            &:before {
+                position: absolute;
+                top: -1px;
+                bottom: -1px;
+                right: -16px;
+                width: 80px;
+                z-index: -1;
+                content: "";
+                background-color: var(--primary);
+                transform: skew(24deg);
+            }
+        }
+    }
+    .btn-submit-f {
+        padding: 8px 20px;
+        border-radius: 4px;
+    }
+}
+.footer-3 {
+    border: none;
+}

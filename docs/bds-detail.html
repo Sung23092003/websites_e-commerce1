@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chi tiết bất động sản</title>
+    <link rel="icon" type="image/x-icon" href="admin/public/images/footer/17408141534560x60.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+      .thumbnail-image {
+        width: 100px;
+        height: 75px;
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+      .related-post-image {
+        height: 200px;
+      }
+      #mainContent {
+        overflow-x: hidden;
+      }
+      .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        padding: 24px;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      }
+
+      .card-item {
+        flex: 1 1 23%;
+        background-color: #16a34a;
+        border-radius: 8px;
+        padding: 16px;
+        text-align: center;
+        color: #fff;
+        transition: transform 0.3s ease-in-out;
+        min-width: 150px;
+      }
+
+      @media (max-width: 768px) {
+        .card-item {
+          flex: 1 1 45%;
+        }
+      }
+
+      .card-item:hover {
+        transform: translateY(-5px);
+      }
+
+      .card-icon {
+        font-size: 36px;
+      }
+
+      .card-value {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 8px;
+      }
+
+      .card-label {
+        font-size: 14px;
+      }
+      /* --- Responsive Sidebar as Navbar Icon --- */
+      #sidebarToggle {
+        display: none;
+        position: fixed;
+        top: 24px;
+        right: 24px;
+        left: auto;
+        z-index: 1001;
+        background: #fff;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        padding: 10px 12px;
+        cursor: pointer;
+      }
+      #sidebarOverlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0,0,0,0.3);
+        z-index: 1000;
+      }
+      @media (max-width: 1024px) {
+        #sidebar {
+          position: fixed;
+          top: 0;
+          right: 0;
+          left: auto;
+          height: 100vh;
+          width: 80vw;
+          max-width: 340px;
+          background: #fff;
+          z-index: 1002;
+          box-shadow: -2px 0 16px rgba(0,0,0,0.15);
+          transform: translateX(100%);
+          transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+          display: block;
+          overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
+        }
+        #sidebar.open {
+          transform: translateX(0);
+        }
+        #sidebarToggle {
+          display: block;
+        }
+        #sidebarOverlay.active {
+          display: block;
+        }
+      }
+      /* --- Card-container scroll on mobile/tablet --- */
+      @media (max-width: 1024px) {
+        .card-container {
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          gap: 16px;
+        }
+        .card-item {
+          min-width: 220px;
+          flex: 0 0 auto;
+        }
+      }
+      /* Bổ sung: thu nhỏ kích thước item ở breakpoint nhỏ */
+      @media (max-width: 1024px) {
+        .card-container { padding: 12px; }
+        .card-item { min-width: 180px; padding: 12px; }
+        .card-icon { font-size: 28px; }
+        .card-value { font-size: 16px; }
+        .card-label { font-size: 12px; }
+
+        /* Post cards smaller on tablet */
+        #relatedPosts > .related-post-card,
+        #latestPosts > .related-post-card {
+          max-width: 320px;
+          padding: 12px;
+        }
+        #relatedPosts .related-post-image,
+        #latestPosts .related-post-image {
+          height: 160px;
+        }
+        #relatedPosts .post-thumbs img,
+        #latestPosts .post-thumbs img {
+          height: 40px;
+        }
+        #relatedPosts h2,
+        #latestPosts h2 { font-size: 1rem; }
+        #relatedPosts .text-sm,
+        #latestPosts .text-sm { font-size: 0.8rem; }
+      }
+      @media (max-width: 640px) {
+        .card-item { min-width: 160px; padding: 10px; }
+        .card-icon { font-size: 24px; }
+        .card-value { font-size: 14px; }
+        .card-label { font-size: 12px; }
+
+        /* Post cards smaller on mobile */
+        #relatedPosts > .related-post-card,
+        #latestPosts > .related-post-card {
+          max-width: 280px;
+          padding: 10px;
+        }
+        #relatedPosts .related-post-image,
+        #latestPosts .related-post-image {
+          height: 140px;
+        }
+        #relatedPosts .post-thumbs img,
+        #latestPosts .post-thumbs img {
+          height: 36px;
+        }
+        #relatedPosts h2,
+        #latestPosts h2 { font-size: 0.95rem; }
+        #relatedPosts .text-sm,
+        #latestPosts .text-sm { font-size: 0.75rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <button id="sidebarToggle" aria-label="Mở menu">
+      <i class="fa fa-bars fa-2x"></i>
+    </button>
+    <div id="sidebarOverlay"></div>
+    <nav
+      class="flex items-center text-sm p-4 bg-white shadow-sm"
+      aria-label="Breadcrumb"
+    >
+      <ol class="flex items-center space-x-2" id="breadcrumbContainer"></ol>
+    </nav>
+
+    <div class="bg-gray-100 min-h-screen font-sans flex justify-center p-8">
+      <div class="max-w-7xl w-full flex flex-wrap lg:flex-nowrap gap-8">
+        <div
+          id="mainContent"
+          class="flex-1 min-w-0 bg-white p-8 rounded-xl shadow-md"
+        >
+          <h1
+            id="detailTitle"
+            class="text-2xl font-semibold text-gray-800 mb-2"
+          ></h1>
+
+          <p class="text-gray-600 mb-6">
+            Sân để xe máy rộng rãi, an toàn, ngay cạnh phòng khách lớn. Phòng
+            khách được thiết kế mở, tràn ngập ánh sáng tự nhiên, là nơi lý tưởng
+            để cả gia đình quây quần hoặc tiếp đón bạn bè.
+          </p>
+
+          <div class="flex flex-col gap-4">
+            <div>
+              <img
+                id="detailMainImage"
+                src=""
+                alt="Ảnh chính"
+                class="w-full object-cover rounded-lg"
+              />
+            </div>
+            <div
+              id="detailThumbnails"
+              class="flex flex-nowrap overflow-x-auto justify-start gap-2 mb-6"
+            ></div>
+          </div>
+
+          <div
+            style="
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              margin-top: 0.5rem;
+              margin-bottom: 0.5rem;
+            "
+          >
+            <span
+              style="background-color: #0282a5; width: 430px; height: 4px"
+            ></span>
+          </div>
+
+          <div class="card-container">
+            <div class="card-item">
+              <i class="fa-solid fa-money-bill-wave card-icon"></i>
+              <p class="card-value" id="detailPrice"></p>
+              <p class="card-label">Giá bán</p>
+            </div>
+            <div class="card-item">
+              <i class="fa-solid fa-star card-icon"></i>
+              <p class="card-value" id="detailArea"></p>
+              <p class="card-label">Diện tích</p>
+            </div>
+            <div class="card-item">
+              <i class="fa-solid fa-bed card-icon"></i>
+              <p class="card-value" id="detailNumberBedRooms"></p>
+              <p class="card-label">Số phòng ngủ</p>
+            </div>
+            <div class="card-item">
+              <i class="fa-solid fa-house card-icon"></i>
+              <p class="card-value" id="detailHouseOrientation"></p>
+              <p class="card-label">Hướng nhà</p>
+            </div>
+            <div class="card-item">
+              <i class="fa-solid fa-compass card-icon"></i>
+              <p class="card-value" id="detailBalconyOrientation"></p>
+              <p class="card-label">Hướng ban công</p>
+            </div>
+            <div class="card-item">
+              <i class="fa-solid fa-couch card-icon"></i>
+              <p class="card-value" id="detailInteriot"></p>
+              <p class="card-label">Nội thất</p>
+            </div>
+            <div class="card-item">
+              <i class="fa-solid fa-star card-icon"></i>
+              <p class="card-value" id="detailMenities"></p>
+              <p class="card-label">Tiện ích</p>
+            </div>
+            <div class="card-item">
+              <i class="fa-solid fa-clock card-icon"></i>
+              <p class="card-value" id="detailTimes"></p>
+              <p class="card-label">Thời gian</p>
+            </div>
+          </div>
+
+
+          <h2 class="text-xl font-semibold text-gray-800 mb-4 mt-8">
+            Thông tin chi tiết
+          </h2>
+          <div class="flex gap-8 mb-8 border-b border-gray-200">
+            <a
+              href="#"
+              class="py-2 text-[#2563EB] font-semibold no-underline border-b-2 border-[#2563EB]"
+              >Tổng quan</a
+            >
+            <a
+              href="https://www.google.com/maps/place/S%C3%A2n+qu%E1%BA%A7n+v%E1%BB%A3t+C%C3%B4ng+%C4%90o%C3%A0n,+Quang+Trung,+%C4%90%E1%BB%91ng+%C4%90a,+H%C3%A0+N%E1%BB%99i,+Vi%E1%BB%87t+Nam/@21.0089304,105.8260662,18.46z/data=!4m6!3m5!1s0x3135ac802f3a3169:0xbb5dca04aececcff!8m2!3d21.0094398!4d105.8267364!16s%2Fg%2F11bvth4p54?hl=vi&entry=ttu&g_ep=EgoyMDI1MDgwNi4wIKXMDSoASAFQAw%3D%3D"
+              target="_blank"
+              class="py-2 text-gray-500 font-medium no-underline hover:text-[#2563EB]"
+              >Xem trên bản đồ</a
+            >
+            <a
+              href="#"
+              class="py-2 text-gray-500 font-medium no-underline hover:text-[#2563EB]"
+              >Đánh giá</a
+            >
+          </div>
+          <p
+            id="detailDescription"
+            class="text-gray-600 leading-relaxed mb-8"
+          ></p>
+
+          <h2 class="text-xl font-semibold text-gray-800 mb-4">Bình luận</h2>
+          <form class="flex flex-col gap-4 mb-8">
+            <textarea
+              rows="4"
+              placeholder="Mời bạn tham gia thảo luận, vui lòng nhập tiếng Việt có dấu"
+              class="p-3 border border-gray-200 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-sky-500"
+            ></textarea>
+            <div class="flex items-center gap-4">
+              <div class="flex items-center gap-2">
+                <input
+                  type="radio"
+                  id="anh"
+                  name="gender"
+                  class="focus:ring-sky-500"
+                  checked
+                />
+                <label for="anh">Anh</label>
+              </div>
+              <div class="flex items-center gap-2">
+                <input
+                  type="radio"
+                  id="chi"
+                  name="gender"
+                  class="focus:ring-sky-500"
+                />
+                <label for="chi">Chị</label>
+              </div>
+            </div>
+            <div class="flex flex-col md:flex-row gap-4">
+              <input
+                type="text"
+                placeholder="Tên và họ (*)"
+                class="flex-1 p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
+              />
+              <input
+                type="email"
+                placeholder="Email của bạn"
+                class="flex-1 p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
+              />
+              <input
+                type="tel"
+                placeholder="Số điện thoại"
+                class="flex-1 p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
+              />
+            </div>
+            <button
+              type="submit"
+              class="bg-blue-600 text-white p-3 rounded-lg border-none text-base font-semibold cursor-pointer w-fit px-8 hover:bg-blue-700 transition-colors"
+            >
+              Gửi
+            </button>
+          </form>
+
+          <h2 class="text-xl font-semibold text-gray-800 mb-4">
+            Tin cùng chuyên mục
+          </h2>
+          <div id="relatedPosts" class="flex flex-wrap gap-6 mb-8"></div>
+          <h2 class="text-xl font-semibold text-gray-800 mb-4">Tin mới nhất</h2>
+          <div id="latestPosts" class="flex flex-wrap gap-6"></div>
+        </div>
+
+        <div id="sidebar" class="w-80 flex-shrink-0 flex flex-col gap-8">
+          <div class="bg-white p-6 rounded-xl shadow-md">
+            <div class="flex flex-col items-center gap-4 mb-4">
+              <div class="w-32 h-32 rounded-full overflow-hidden mb-2">
+                <img
+                  id="sidebarAuthorImage"
+                  src=""
+                  alt="Avatar"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="text-center">
+                <p
+                  id="sidebarAuthorName"
+                  class="font-bold text-xl text-gray-900"
+                ></p>
+                <p id="sidebarAuthorBio" class="text-sm text-gray-600"></p>
+                <p id="sidebarAuthorLocation" class="text-sm text-gray-600"></p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 mt-4">
+              <a
+                id="sidebarPhoneLink"
+                href=""
+                class="flex-grow flex items-center justify-center bg-[#16A34A] text-white p-3 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:bg-green-700 hover:scale-105"
+              >
+                <i class="fa-solid fa-phone-volume mr-2"></i>
+                <span id="sidebarPhoneNumber"></span>
+              </a>
+              <a
+                id="sidebarZaloLink"
+                href=""
+                target="_blank"
+                class="flex items-center justify-center bg-[#2563EB] text-white w-1/4 p-3 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:bg-blue-600 hover:scale-105"
+              >
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Icon_of_Zalo.svg/2048px-Icon_of_Zalo.svg.png"
+                  alt="Zalo"
+                  class="w-6 h-6"
+                />
+              </a>
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl shadow-md">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">
+              Bộ lọc tìm kiếm
+            </h2>
+            <div class="flex flex-col gap-4">
+              <!-- Loại BĐS -->
+              <select
+                class="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
+              >
+                <option selected>Loại BĐS</option>
+                <option>Nhà phố</option>
+                <option>Căn hộ</option>
+                <option>Biệt thự</option>
+                <option>Đất nền</option>
+                <option>Nhà trọ / Phòng trọ</option>
+              </select>
+
+              <!-- Mức giá -->
+              <select
+                class="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
+              >
+                <option selected>Mức giá</option>
+                <option>Dưới 1 tỷ</option>
+                <option>1 - 3 tỷ</option>
+                <option>3 - 5 tỷ</option>
+                <option>5 - 10 tỷ</option>
+                <option>Trên 10 tỷ</option>
+              </select>
+
+              <!-- Diện tích -->
+              <select
+                class="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
+              >
+                <option selected>Diện tích</option>
+                <option>Dưới 30 m²</option>
+                <option>30 - 50 m²</option>
+                <option>50 - 100 m²</option>
+                <option>100 - 200 m²</option>
+                <option>Trên 200 m²</option>
+              </select>
+
+              <!-- Chợt điểm đến -->
+              <select
+                class="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
+              >
+                <option selected>Chợt điểm đến</option>
+                <option>Gần trung tâm</option>
+                <option>Gần trường học</option>
+                <option>Gần bệnh viện</option>
+                <option>Gần chợ / siêu thị</option>
+                <option>Khu du lịch</option>
+              </select>
+
+              <!-- Hướng -->
+              <select
+                class="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
+              >
+                <option selected>Hướng</option>
+                <option>Đông</option>
+                <option>Tây</option>
+                <option>Nam</option>
+                <option>Bắc</option>
+                <option>Đông Nam</option>
+                <option>Tây Nam</option>
+                <option>Đông Bắc</option>
+                <option>Tây Bắc</option>
+              </select>
+
+              <!-- Giấy tờ pháp lý -->
+              <select
+                class="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
+              >
+                <option selected>Giấy tờ pháp lý</option>
+                <option>Sổ đỏ / Sổ hồng</option>
+                <option>Hợp đồng mua bán</option>
+                <option>Giấy tay</option>
+                <option>Đang chờ cấp sổ</option>
+              </select>
+
+              <!-- Danh mục chính -->
+              <select
+                class="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
+              >
+                <option selected>Chọn danh mục chính</option>
+                <option>Mua</option>
+                <option>Bán</option>
+                <option>Cho thuê</option>
+              </select>
+
+              <button
+                class="bg-gradient-to-r from-[#10B981] to-[#059669] text-white p-3 rounded-lg border-none text-base font-semibold cursor-pointer hover:scale-105 hover:bg-green-600 transition-all duration-300"
+              >
+                Tìm kiếm
+              </button>
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl shadow-md">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Danh mục</h2>
+            <ul class="list-none p-0 flex flex-col gap-2 text-md">
+              <li>
+                <a href="#" class="text-black underline hover:text-gray-600"
+                  >Căn hộ chung cư</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-black underline hover:text-gray-600"
+                  >Nhà riêng</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-black underline hover:text-gray-600"
+                  >Đất nền</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-black underline hover:text-gray-600"
+                  >Biệt thự</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-black underline hover:text-gray-600"
+                  >Nhà xưởng</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-black underline hover:text-gray-600"
+                  >Văn phòng</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl shadow-md">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">
+              Bất động sản theo đơn vị hành chính
+            </h2>
+
+            <ul class="list-none p-0 flex flex-col gap-2 text-md">
+              <!-- Hà Nội -->
+              <li class="cursor-pointer">
+                <div
+                  class="flex justify-between items-center py-2 hover:bg-gray-100 rounded-md px-2"
+                  onclick="toggleMenu(this)"
+                >
+                  <span class="text-black">Bán đất Hà Nội</span>
+                  <i
+                    class="fa-solid fa-chevron-down text-gray-400 text-xs transition-transform duration-300"
+                  ></i>
+                </div>
+                <ul class="list-none p-0 ml-4 hidden">
+                  <li class="cursor-pointer">
+                    <div
+                      class="flex justify-between items-center py-2 hover:bg-gray-100 rounded-md px-2"
+                      onclick="toggleMenu(this)"
+                    >
+                      <span class="text-black">Bán đất Quận Hoàn Kiếm</span>
+                      <i
+                        class="fa-solid fa-chevron-down text-gray-400 text-xs transition-transform duration-300"
+                      ></i>
+                    </div>
+                    <ul class="list-none p-0 ml-4 hidden">
+                      <li class="py-2 hover:bg-gray-100 rounded-md px-2">
+                        <a href="#" class="text-black no-underline"
+                          >Phường Hàng Bạc</a
+                        >
+                      </li>
+                      <li class="py-2 hover:bg-gray-100 rounded-md px-2">
+                        <a href="#" class="text-black no-underline"
+                          >Phường Hàng Buồm</a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="cursor-pointer">
+                    <div
+                      class="flex justify-between items-center py-2 hover:bg-gray-100 rounded-md px-2"
+                      onclick="toggleMenu(this)"
+                    >
+                      <span class="text-black">Bán đất Quận Hà Đông</span>
+                      <i
+                        class="fa-solid fa-chevron-down text-gray-400 text-xs transition-transform duration-300"
+                      ></i>
+                    </div>
+                    <ul class="list-none p-0 ml-4 hidden">
+                      <li class="py-2 hover:bg-gray-100 rounded-md px-2">
+                        <a href="#" class="text-black no-underline"
+                          >Phường Mộ Lao</a
+                        >
+                      </li>
+                      <li class="py-2 hover:bg-gray-100 rounded-md px-2">
+                        <a href="#" class="text-black no-underline"
+                          >Phường Văn Quán</a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- TP. Hồ Chí Minh -->
+              <li class="cursor-pointer">
+                <div
+                  class="flex justify-between items-center py-2 hover:bg-gray-100 rounded-md px-2"
+                  onclick="toggleMenu(this)"
+                >
+                  <span class="text-black">Bán đất TP. Hồ Chí Minh</span>
+                  <i
+                    class="fa-solid fa-chevron-down text-gray-400 text-xs transition-transform duration-300"
+                  ></i>
+                </div>
+                <ul class="list-none p-0 ml-4 hidden">
+                  <li class="cursor-pointer">
+                    <div
+                      class="flex justify-between items-center py-2 hover:bg-gray-100 rounded-md px-2"
+                      onclick="toggleMenu(this)"
+                    >
+                      <span class="text-black">Bán đất Quận 1</span>
+                      <i
+                        class="fa-solid fa-chevron-down text-gray-400 text-xs transition-transform duration-300"
+                      ></i>
+                    </div>
+                    <ul class="list-none p-0 ml-4 hidden">
+                      <li class="py-2 hover:bg-gray-100 rounded-md px-2">
+                        <a href="#" class="text-black no-underline"
+                          >Phường Bến Nghé</a
+                        >
+                      </li>
+                      <li class="py-2 hover:bg-gray-100 rounded-md px-2">
+                        <a href="#" class="text-black no-underline"
+                          >Phường Bến Thành</a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="cursor-pointer">
+                    <div
+                      class="flex justify-between items-center py-2 hover:bg-gray-100 rounded-md px-2"
+                      onclick="toggleMenu(this)"
+                    >
+                      <span class="text-black">Bán đất Quận 7</span>
+                      <i
+                        class="fa-solid fa-chevron-down text-gray-400 text-xs transition-transform duration-300"
+                      ></i>
+                    </div>
+                    <ul class="list-none p-0 ml-4 hidden">
+                      <li class="py-2 hover:bg-gray-100 rounded-md px-2">
+                        <a href="#" class="text-black no-underline"
+                          >Phường Tân Phong</a
+                        >
+                      </li>
+                      <li class="py-2 hover:bg-gray-100 rounded-md px-2">
+                        <a href="#" class="text-black no-underline"
+                          >Phường Phú Mỹ</a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="cursor-pointer">
+                <div
+                  class="flex justify-between items-center py-2 hover:bg-gray-100 rounded-md px-2"
+                  onclick="toggleMenu(this)"
+                >
+                  <span class="text-black">Bán đất Lâm Đồng</span>
+                  <i
+                    class="fa-solid fa-chevron-down text-gray-400 text-xs transition-transform duration-300"
+                  ></i>
+                </div>
+                <ul class="list-none p-0 ml-4 hidden">
+                  <li class="cursor-pointer">
+                    <div
+                      class="flex justify-between items-center py-2 hover:bg-gray-100 rounded-md px-2"
+                      onclick="toggleMenu(this)"
+                    >
+                      <span class="text-black">Bán đất Huyện Lâm Hà</span>
+                      <i
+                        class="fa-solid fa-chevron-down text-gray-400 text-xs transition-transform duration-300"
+                      ></i>
+                    </div>
+                    <ul class="list-none p-0 ml-4 hidden">
+                      <li class="py-2 hover:bg-gray-100 rounded-md px-2">
+                        <a href="#" class="text-black no-underline"
+                          >Bán đất xã Hoài Đức</a
+                        >
+                      </li>
+                      <li class="py-2 hover:bg-gray-100 rounded-md px-2">
+                        <a href="#" class="text-black no-underline"
+                          >Bán đất xã Phú Sơn</a
+                        >
+                      </li>
+                      <li class="py-2 hover:bg-gray-100 rounded-md px-2">
+                        <a href="#" class="text-black no-underline"
+                          >Bán đất xã Đan Phượng</a
+                        >
+                      </li>
+                      <li class="py-2 hover:bg-gray-100 rounded-md px-2">
+                        <a href="#" class="text-black no-underline"
+                          >Bán đất xã Hà Lâm</a
+                        >
+                      </li>
+                      <li class="py-2 hover:bg-gray-100 rounded-md px-2">
+                        <a href="#" class="text-black no-underline"
+                          >Bán đất xã Nam Hồ</a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="cursor-pointer">
+                    <div
+                      class="flex justify-between items-center py-2 hover:bg-gray-100 rounded-md px-2"
+                      onclick="toggleMenu(this)"
+                    >
+                      <span class="text-black">Bán đất Huyện Đức Trọng</span>
+                      <i
+                        class="fa-solid fa-chevron-down text-gray-400 text-xs transition-transform duration-300"
+                      ></i>
+                    </div>
+                    <ul class="list-none p-0 ml-4 hidden">
+                      <li class="py-2 hover:bg-gray-100 rounded-md px-2">
+                        <a href="#" class="text-black no-underline"
+                          >Bán đất xã Hiệp An</a
+                        >
+                      </li>
+                      <li class="py-2 hover:bg-gray-100 rounded-md px-2">
+                        <a href="#" class="text-black no-underline"
+                          >Bán đất xã Liên Nghĩa</a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="cursor-pointer">
+                <div
+                  class="flex justify-between items-center py-2 hover:bg-gray-100 rounded-md px-2"
+                  onclick="toggleMenu(this)"
+                >
+                  <span class="text-black">Bán đất TP. Đà Lạt</span>
+                  <i
+                    class="fa-solid fa-chevron-down text-gray-400 text-xs transition-transform duration-300"
+                  ></i>
+                </div>
+                <ul class="list-none p-0 ml-4 hidden">
+                  <li class="cursor-pointer">
+                    <div
+                      class="flex justify-between items-center py-2 hover:bg-gray-100 rounded-md px-2"
+                      onclick="toggleMenu(this)"
+                    >
+                      <span class="text-black">Bán đất Phường 10</span>
+                      <i
+                        class="fa-solid fa-chevron-down text-gray-400 text-xs transition-transform duration-300"
+                      ></i>
+                    </div>
+                    <ul class="list-none p-0 ml-4 hidden">
+                      <li class="py-2 hover:bg-gray-100 rounded-md px-2">
+                        <a href="#" class="text-black no-underline"
+                          >Bán đất đường ABC</a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const realEstateItems = [
+        {
+          id: 1,
+          title: "Bán nhà đường ô tô tránh nhau, xe tải 3 tấn đi thoải mái",
+          description:
+            "Sân để xe máy, Phòng khách rộng, Bếp có hút mùi, 2 phòng ngủ, 1 toilet có quạt hút, Sân sau + giếng ....",
+          price: "5.5 tỷ",
+          numberBedrooms: "2 phòng",
+          houseOrientation:"Nam",
+          balconyOrientation:"Đông",
+          interiot:"Đầy đủ",
+          menities: "Cammera bảo vệ, PCCC",
+          times:"Ở ngay",
+          area: "72 m²",
+          location: "Quận 1, TP.HCM",
+          newLocation: "Vinhomes Central Park, Bình Thạnh",
+          images: [
+            "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",
+            "https://images.pexels.com/photos/1546166/pexels-photo-1546166.jpeg",
+            "https://cdn.pixabay.com/photo/2016/11/29/03/53/architecture-1867187_1280.jpg",
+            "https://images.pexels.com/photos/3935338/pexels-photo-3935338.jpeg",
+            "https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg",
+            "https://images.pexels.com/photos/7018257/pexels-photo-7018257.jpeg",
+            "https://images.pexels.com/photos/7018247/pexels-photo-7018247.jpeg",
+            "https://images.pexels.com/photos/6527052/pexels-photo-6527052.jpeg",
+            "https://images.pexels.com/photos/6487954/pexels-photo-6487954.jpeg"
+
+          ],
+          breadcrumbs: [
+            { text: "Mua bán nhà", link: "#" },
+            { text: "Lâm Đồng", link: "#" },
+            { text: "Lâm Hà", link: "#" },
+          ],
+          contact: {
+            name: "Nguyễn Thị Nhung",
+            bio: "Nhà môi giới uy tín, chuyên đất nền",
+            location: "Lâm Đồng",
+            image: "https://studiochupanhdep.com/Upload/Images/Album/hinh-anh-profile-01.jpg",
+            phone: "0847865568",
+          },
+        },
+        {
+          id: 2,
+          title: "Bán nhà đường ô tô tránh nhau, xe tải 3 tấn đi thoải mái",
+          description:
+            "Sân để xe máy, Phòng khách rộng, Bếp có hút mùi, 2 phòng ngủ, 1 toilet có quạt hút, Sân sau + giếng ....",
+          price: "3.5 tỷ",
+          numberBedrooms: "2 phòng",
+          houseOrientation:"Nam",
+          balconyOrientation:"Đông",
+          interiot:"Đầy đủ",
+          menities: "Cammera bảo vệ, PCCC",
+          times:"Ở ngay",
+          area: "72 m²",
+          location: "Quận 1, TP.HCM",
+          newLocation: "Vinhomes Central Park, Bình Thạnh",
+          images: [
+           "https://images.pexels.com/photos/1974596/pexels-photo-1974596.jpeg",
+            "https://images.pexels.com/photos/1475938/pexels-photo-1475938.jpeg",
+            "https://images.pexels.com/photos/18950082/pexels-photo-18950082.jpeg",
+            "https://images.pexels.com/photos/12235857/pexels-photo-12235857.jpeg",
+          ],
+          breadcrumbs: [
+            { text: "Căn hộ chung cư", link: "#" },
+            { text: "Hà Nội", link: "#" },
+            { text: "Đống Đa", link: "#" },
+          ],
+          contact: {
+            name: "Nguyễn Văn Quang",
+            bio: "Chuyên viên tư vấn căn hộ cao cấp",
+            location: "Hà Nội",
+            image: "https://studiochupanhdep.com/Upload/Images/Album/anh-cv-02.jpg",
+            phone: "0912345678",
+          },
+        },
+        {
+          id: 3,
+          title: "Bán nhà đường ô tô tránh nhau, xe tải 3 tấn đi thoải mái",
+          description:
+            "Sân để xe máy, Phòng khách rộng, Bếp có hút mùi, 2 phòng ngủ, 1 toilet có quạt hút, Sân sau + giếng ....",
+          price: "6.5 tỷ",
+          numberBedrooms: "2 phòng",
+          houseOrientation:"Nam",
+          balconyOrientation:"Đông",
+          interiot:"Đầy đủ",
+          menities: "Cammera bảo vệ, PCCC",
+          times:"Ở ngay",
+          area: "82 m²",
+          location: "Quận 1, TP.HCM",
+          newLocation: "Vinhomes Central Park, Bình Thạnh",
+          images: [
+            "https://images.pexels.com/photos/1438834/pexels-photo-1438834.jpeg",
+            "https://images.pexels.com/photos/13765014/pexels-photo-13765014.jpeg",
+            "https://images.pexels.com/photos/11571120/pexels-photo-11571120.jpeg",
+            "https://images.pexels.com/photos/9669464/pexels-photo-9669464.jpeg",
+          ],
+          breadcrumbs: [
+            { text: "Đất nền", link: "#" },
+            { text: "Đà Lạt", link: "#" },
+            { text: "Phường 10", link: "#" },
+          ],
+          contact: {
+            name: "Trần Thị Lan",
+            bio: "Chuyên gia đất nền nghỉ dưỡng",
+            location: "Đà Lạt",
+            image: "https://www.paratime.vn/wp-content/uploads/2019/09/timestudio.vn-corporate-headshot-pricing-01.jpg",
+            phone: "0987654321",
+          },
+        },
+         {
+          id: 4,
+          title: "Bán nhà đường ô tô tránh nhau, xe tải 3 tấn đi thoải mái",
+          description:
+            "Sân để xe máy, Phòng khách rộng, Bếp có hút mùi, 2 phòng ngủ, 1 toilet có quạt hút, Sân sau + giếng ....",
+          price: "6.5 tỷ",
+          numberBedrooms: "2 phòng",
+          houseOrientation:"Nam",
+          balconyOrientation:"Đông",
+          interiot:"Đầy đủ",
+          menities: "Cammera bảo vệ, PCCC",
+          times:"Ở ngay",
+          area: "82 m²",
+          location: "Quận 1, TP.HCM",
+          newLocation: "Vinhomes Central Park, Bình Thạnh",
+          images: [
+             "https://images.pexels.com/photos/1795507/pexels-photo-1795507.jpeg",
+            "https://images.pexels.com/photos/1795508/pexels-photo-1795508.jpeg",
+            "https://images.pexels.com/photos/28458312/pexels-photo-28458312.jpeg",
+            "https://images.pexels.com/photos/13104516/pexels-photo-13104516.jpeg",
+          ],
+          breadcrumbs: [
+            { text: "Đất nền", link: "#" },
+            { text: "Đà Lạt", link: "#" },
+            { text: "Phường 10", link: "#" },
+          ],
+          contact: {
+            name: "Trần Thị Hạnh",
+            bio: "Chuyên gia đất nền nghỉ dưỡng",
+            location: "Đà Lạt",
+            image: "https://topstudio.com.vn/wp-content/uploads/2023/02/chup-hinh-chan-dung-cv-chuyen-nghiep-hcm-3-1.jpg",
+            phone: "0987654321",
+          },
+        },
+      ];
+
+      function displayRealEstateDetail() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const itemId = parseInt(urlParams.get("id")) || 1;
+        const item = realEstateItems.find((i) => i.id === itemId);
+
+        if (item) {
+          // Update main content
+          document.getElementById("detailTitle").innerText = item.title;
+          document.getElementById("detailDescription").innerText =
+            item.description;
+          document.getElementById("detailArea").innerText = item.area;
+          document.getElementById("detailPrice").innerText = item.price;
+          document.getElementById("detailNumberBedRooms").innerText = item.numberBedrooms;
+          document.getElementById("detailHouseOrientation").innerText = item.houseOrientation;
+          document.getElementById("detailBalconyOrientation").innerText = item.balconyOrientation;
+          document.getElementById("detailInteriot").innerText = item.interiot;
+          document.getElementById("detailMenities").innerText = item.menities;
+          document.getElementById("detailTimes").innerText = item.times;
+
+          // Update breadcrumbs
+          const breadcrumbContainer = document.getElementById(
+            "breadcrumbContainer"
+          );
+          breadcrumbContainer.innerHTML = `
+            <li>
+                <a href="./index.html" class="flex items-center text-gray-500 hover:text-gray-700">
+                    <i class="fa-solid fa-house text-gray-500 mr-1"></i> Home
+                </a>
+            </li>
+            <span class="text-gray-400">/</span>
+          `;
+          item.breadcrumbs.forEach((crumb, index) => {
+            const li = document.createElement("li");
+            if (index < item.breadcrumbs.length - 1) {
+              li.innerHTML = `
+                <a href="${crumb.link}" class="text-gray-500 hover:text-gray-700">
+                    ${crumb.text}
+                </a>
+              `;
+            } else {
+              li.innerHTML = `<span class="text-gray-800 font-bold">${crumb.text}</span>`;
+            }
+            breadcrumbContainer.appendChild(li);
+
+            if (index < item.breadcrumbs.length - 1) {
+              const separator = document.createElement("li");
+              separator.innerHTML = `<span class="text-gray-400">/</span>`;
+              breadcrumbContainer.appendChild(separator);
+            }
+          });
+
+          // Update contact sidebar
+          document.getElementById("sidebarAuthorName").innerText =
+            item.contact.name;
+          document.getElementById("sidebarAuthorBio").innerText =
+            item.contact.bio;
+          document.getElementById("sidebarAuthorLocation").innerText =
+            item.contact.location;
+          document.getElementById("sidebarAuthorImage").src =
+            item.contact.image;
+          document.getElementById("sidebarPhoneNumber").innerText =
+            item.contact.phone;
+          document.getElementById(
+            "sidebarPhoneLink"
+          ).href = `tel:${item.contact.phone}`;
+          document.getElementById(
+            "sidebarZaloLink"
+          ).href = `https://zalo.me/${item.contact.phone}`;
+
+          // Render main and thumbnail images
+          const mainImage = document.getElementById("detailMainImage");
+          mainImage.src = item.images[0];
+          const thumbnailsContainer =
+            document.getElementById("detailThumbnails");
+          thumbnailsContainer.innerHTML = "";
+          item.images.forEach((image, index) => {
+            const img = document.createElement("img");
+            img.src = image;
+            img.classList.add(
+              "thumbnail-image",
+              "object-cover",
+              "rounded-md",
+              "cursor-pointer",
+              "transition-transform",
+              "duration-300",
+              "hover:scale-105"
+            );
+            if (index === 0) {
+              img.classList.add("border-2", "border-green-500");
+            } else {
+              img.classList.add("border-2", "border-transparent");
+            }
+
+            img.onclick = () => {
+              mainImage.src = image;
+              document
+                .querySelectorAll("#detailThumbnails img")
+                .forEach((thumb) => {
+                  thumb.classList.remove("border-green-500");
+                  thumb.classList.add("border-transparent");
+                });
+              img.classList.add("border-green-500");
+            };
+            thumbnailsContainer.appendChild(img);
+          });
+
+          // Render related posts and latest posts
+          const relatedPostsContainer = document.getElementById("relatedPosts");
+          const latestPostsContainer = document.getElementById("latestPosts");
+          relatedPostsContainer.innerHTML = "";
+          latestPostsContainer.innerHTML = "";
+          realEstateItems
+            .filter((p) => p.id !== item.id)
+            .slice(0, 2)
+            .forEach((post) => {
+              const postHTML = createPostHTML(post);
+              relatedPostsContainer.insertAdjacentHTML("beforeend", postHTML);
+            });
+          realEstateItems.slice(0, 2).forEach((post) => {
+            const postHTML = createPostHTML(post);
+            latestPostsContainer.insertAdjacentHTML("beforeend", postHTML);
+          });
+        } else {
+          document.body.innerHTML =
+            '<p class="text-center text-4xl text-red-600 mt-16">Không tìm thấy bất động sản này!</p>';
+        }
+      }
+
+        function createPostHTML(post) {
+        return `
+        <div class="bg-white p-4 rounded-xl shadow-md max-w-sm flex-grow related-post-card transition-transform duration-300 hover:scale-105" onclick="window.location.href='bds-detail.html?id=${post.id}'">
+          <div class="mb-4">
+            <img src="${post.images[0]}" alt="Ảnh chính" class="w-full object-cover rounded-lg related-post-image" />
+          </div>
+          <div class="flex flex-wrap gap-2 mb-4 post-thumbs">
+            ${post.images
+              .slice(0, 4)
+              .map(
+                (image, index) => `
+                <img
+                  src="${image}"
+                  alt="Ảnh phụ ${index + 1}"
+                  class="w-1/5 h-12 object-cover rounded-md cursor-pointer border-2 ${
+                    index === 0 ? "border-green-500" : "border-transparent"
+                  } transition-colors duration-300"
+                  onclick="event.stopPropagation(); const card=this.closest('.related-post-card'); card.querySelector('.related-post-image').src = this.src; outlineActiveCard(card); updatePostThumbnailBorder(this);"
+                />
+              `
+              )
+              .join("")}
+          </div>
+          <div class="flex flex-col gap-2">
+            <div>
+              <h2 class="font-semibold text-lg leading-7">
+                ${post.title}
+              </h2>
+              <p class="text-sm text-gray-600 mt-1 whitespace-nowrap overflow-hidden text-ellipsis">
+                ${post.description}
+              </p>
+            </div>
+            <div class="flex items-center gap-8 mt-3 w-full justify-center">
+              <span class="bg-[#F8644D] text-white px-3 py-1 rounded-full text-sm font-semibold">${post.price}</span>
+              <div class="flex items-center text-sm text-gray-600">
+                <i class="fa-solid fa-ruler-combined mr-1 text-blue-500"></i>${post.area}
+              </div>
+              <span class="text-sm text-gray-600"><i class="fa-solid fa-house mr-1 text-green-500"></i> Bán nhà</span>
+            </div>
+            <div class="mt-2">
+              <div class="flex items-center text-sm text-gray-500">
+                <i class="fa-solid fa-location-dot text-[#F8644D] mr-1"></i>
+                <span class="line-through">${post.location}</span>
+              </div>
+              <div class="flex items-center text-sm text-green-500 font-medium">
+                <i class="fa-solid fa-map-location-dot mr-1"></i> ${post.newLocation}
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 mt-4">
+            <img src="${post.contact.image}" alt="Tác giả"   style="
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    object-fit: cover;
+    transition: transform 0.3s;
+    cursor: pointer;
+    flex-shrink: 0;
+  " />
+            <button
+              class="flex items-center justify-center bg-[#DCA54A] text-white px-3 py-2 rounded-lg font-semibold text-sm flex-1 hover:opacity-80 transition-colors"
+              onclick="event.stopPropagation(); window.location.href='tel:${post.contact.phone}'"
+            >
+              <i class="fa-solid fa-phone mr-2"></i> ${post.contact.phone}
+            </button>
+            <button
+              class="flex items-center justify-center  bg-[linear-gradient(to_right,#10B981,#059669)] text-white px-3  py-2 rounded-lg font-semibold text-sm flex-1 hover:opacity-80 transition-colors"
+              onclick="event.stopPropagation(); window.location.href='https://zalo.me/${post.contact.phone}'"
+            >
+              <i class="fa fa-envelope mr-2"></i> Tư vấn
+            </button>
+          </div>
+        </div>
+      `;
+      }
+      function toggleMenu(element) {
+        const submenu = element.nextElementSibling;
+        const icon = element.querySelector("i");
+        if (submenu) {
+          submenu.classList.toggle("hidden");
+          icon.classList.toggle("rotate-180");
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", displayRealEstateDetail);
+
+      function updatePostThumbnailBorder(imgEl) {
+        const thumbContainer = imgEl.closest('.related-post-card').querySelectorAll('img');
+        thumbContainer.forEach((el) => {
+          if (el !== imgEl) {
+            el.classList.remove('border-green-500');
+            if (el.classList.contains('border-2')) {
+              el.classList.add('border-transparent');
+            }
+          }
+        });
+        imgEl.classList.remove('border-transparent');
+        imgEl.classList.add('border-green-500');
+      }
+
+      function outlineActiveCard(cardEl) {
+        document.querySelectorAll('.related-post-card').forEach((card) => {
+        });
+      }
+
+      const sidebar = document.getElementById('sidebar');
+      const sidebarToggle = document.getElementById('sidebarToggle');
+      const sidebarOverlay = document.getElementById('sidebarOverlay');
+      if (sidebar && sidebarToggle && sidebarOverlay) {
+        sidebarToggle.addEventListener('click', function() {
+          sidebar.classList.add('open');
+          sidebarOverlay.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+        sidebarOverlay.addEventListener('click', function() {
+          sidebar.classList.remove('open');
+          sidebarOverlay.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+        // Đóng sidebar khi resize về desktop
+        window.addEventListener('resize', function() {
+          if (window.innerWidth > 1024) {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('active');
+          }
+        });
+        // Đóng bằng phím Escape
+        window.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('active');
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
