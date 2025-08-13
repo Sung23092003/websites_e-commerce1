@@ -4825,8 +4825,8 @@ function renderRealEstateItems() {
     // }
 
     renderCarousel(carousel, filteredItems);
-    renderCarousel(carouselTop, filteredItems);
-    renderCarousel(carouselBottom, [...filteredItems].reverse());
+    renderCarousel2(carouselTop, filteredItems);
+    renderCarousel3(carouselBottom, [...filteredItems].reverse());
 
 }
 
@@ -4838,6 +4838,132 @@ function renderCarousel(container, items) {
                     <div style="margin-bottom: 1rem;">
                         <img
                             id="mainImage${item.id}"
+                            src="${item.images[0]}"
+                            alt="Ảnh chính"
+                            style="width: 100%; height: 16rem; object-fit: cover; border-radius: 0.75rem;"
+                            onclick="event.stopPropagation();"
+                        />
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        ${item.images
+                            .map(
+                                (image, index) => `
+                                <img
+                                    onclick="event.stopPropagation(); changeImage(${item.id}, this);"
+                                    src="${image}"
+                                    class="thumb-${item.id}"
+                                    style="border: 2px solid ${index === 0 ? '#22c55e' : 'transparent'}; cursor: pointer; flex-grow: 1; width: calc(25% - 0.375rem); height: 4rem; object-fit: cover; border-radius: 0.375rem; transition: border-color 0.3s;"
+                                    onmouseover="this.style.borderColor='#9ca3af'"
+                                    onmouseout="this.style.borderColor='${index === 0 ? '#22c55e' : 'transparent'}'"
+                                />
+                            `
+                            )
+                            .join("")}
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div>
+                            <h2 style="font-weight: 600; font-size: 1.125rem; line-height: 1.75rem;">
+                                ${item.title}
+                            </h2>
+                            <p style="font-size: 0.875rem; color: #4b5563; margin-top: 0.25rem;">
+                                ${item.description}
+                            </p>
+                        </div>
+                        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 0.75rem; width: 100%; justify-content: center;">
+                            <span style="background-color: #f8644d; color: #ffffff; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 600;">${item.price}</span>
+                            <div style="display: flex; align-items: center; font-size: 0.875rem; color: #4b5563;">
+                                <i class="fa-solid fa-ruler-combined" style="margin-right: 0.25rem; color: #3b82f6;"></i>
+                                ${item.area}
+                            </div>
+                            <span style="font-size: 0.875rem; color: #4b5563;">
+                                <i class="fa-solid fa-house" style="margin-right: 0.25rem; color: #22c55e;"></i> 
+                                ${item.type === 'nhapho' ? 'Nhà phố' : item.type === 'canho' ? 'Căn hộ' : item.type === 'bietthu' ? 'Biệt thự' : 'Đất nền'}
+                            </span>
+                        </div>
+                        <div style="margin-top: 0.5rem;">
+                            <div style="display: flex; align-items: center; font-size: 0.875rem; color: #6b7280;">
+                                <i class="fa-solid fa-location-dot" style="color: #f8644d; margin-right: 0.25rem;"></i>
+                                <span style="text-decoration: line-through;">${item.location}</span>
+                            </div>
+                            <div style="display: flex; align-items: center; font-size: 0.875rem; color: #22c55e; font-weight: 500;">
+                                <i class="fa-solid fa-map-location-dot" style="margin-right: 0.25rem;"></i> ${item.newLocation}
+                            </div>
+                        </div>
+                        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; margin-top: 0.4rem; gap: 0.75rem;">
+                            <img
+                                src="${item.authorImage}"
+                                alt="Tác giả"
+                                title="${item.authorName}"
+                                style="width: 2.5rem; height: 2.5rem; border-radius: 9999px; object-fit: cover; transition: transform 0.3s; cursor: pointer; flex-shrink: 0;"
+                                onmouseover="this.style.transform = 'scale(1.1)';"
+                                onmouseout="this.style.transform = 'scale(1)';"
+                                onclick="event.stopPropagation();"
+                            />
+                            <button
+                                style="display: flex; align-items: center; justify-content: center; background-color: #dca54a; color: #ffffff; padding: 10px 16px; border-radius: 0.5rem; font-size: 0.875rem; font-weight: 600; transition: all 0.3s; border: none; cursor: pointer; flex-grow: 1; min-width: 100px;"
+                                onmouseover="this.style.transform = 'scale(1.05)'; this.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';"
+                                onmouseout="this.style.transform = 'scale(1)'; this.style.boxShadow = 'none';"
+                                onclick="event.stopPropagation();"
+                            >
+                                <i class="fa-solid fa-phone" style="margin-right: 0.5rem;"></i> ${item.phoneNumber}
+                            </button>
+                            <button
+                                style="display: flex; align-items: center; justify-content: center; background-image: linear-gradient(to right, #10B981, #059669); color: #ffffff; padding: 10px 12px; border-radius: 0.5rem; font-size: 0.875rem; font-weight: 600; transition: all 0.3s; border: none; cursor: pointer; flex-grow: 1; min-width: 100px;"
+                                onmouseover="this.style.transform = 'scale(1.05)'; this.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';"
+                                onmouseout="this.style.transform = 'scale(1)'; this.style.boxShadow = 'none';"
+                                onclick="event.stopPropagation();"
+                            >
+                                <i class="fa-solid fa-envelope" style="margin-right: 0.25rem;"></i> Yêu cầu tư vấn
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        container.append(itemHTML);
+    });
+
+    
+    
+    // Khởi tạo Slick Carousel nếu có items
+    if (items.length > 0) {
+        container.slick({
+            dots: true,
+            infinite: false,
+            speed: 300,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        infinite: true,
+                        dots: true
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
+    }
+}
+
+// section 2:top
+function renderCarousel2(container, items) {
+    items.forEach((item) => {
+        const itemHTML = `
+            <div style="padding: 0 1rem; cursor: pointer;" onclick="window.location.href='bds-detail.html?id=${item.id}'">
+                <div style="background-color: #ffffff; padding: 1rem; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); width: 100%;">
+                    <div style="margin-bottom: 1rem;">
+                        <img
+                            id="mainImage2${item.id}"
                             src="${item.images[0]}"
                             alt="Ảnh chính"
                             style="width: 100%; height: 16rem; object-fit: cover; border-radius: 0.75rem;"
@@ -4953,9 +5079,140 @@ function renderCarousel(container, items) {
     }
 }
 
+// section 3:boottom
+function renderCarousel3(container, items) {
+    items.forEach((item) => {
+        const itemHTML = `
+            <div style="padding: 0 1rem; cursor: pointer;" onclick="window.location.href='bds-detail.html?id=${item.id}'">
+                <div style="background-color: #ffffff; padding: 1rem; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); width: 100%;">
+                    <div style="margin-bottom: 1rem;">
+                        <img
+                            id="mainImage3${item.id}"
+                            src="${item.images[0]}"
+                            alt="Ảnh chính"
+                            style="width: 100%; height: 16rem; object-fit: cover; border-radius: 0.75rem;"
+                            onclick="event.stopPropagation();"
+                        />
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        ${item.images
+                            .map(
+                                (image, index) => `
+                                <img
+                                    onclick="event.stopPropagation(); changeImage(${item.id}, this);"
+                                    src="${image}"
+                                    class="thumb-${item.id}"
+                                    style="border: 2px solid ${index === 0 ? '#22c55e' : 'transparent'}; cursor: pointer; flex-grow: 1; width: calc(25% - 0.375rem); height: 4rem; object-fit: cover; border-radius: 0.375rem; transition: border-color 0.3s;"
+                                    onmouseover="this.style.borderColor='#9ca3af'"
+                                    onmouseout="this.style.borderColor='${index === 0 ? '#22c55e' : 'transparent'}'"
+                                />
+                            `
+                            )
+                            .join("")}
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div>
+                            <h2 style="font-weight: 600; font-size: 1.125rem; line-height: 1.75rem;">
+                                ${item.title}
+                            </h2>
+                            <p style="font-size: 0.875rem; color: #4b5563; margin-top: 0.25rem;">
+                                ${item.description}
+                            </p>
+                        </div>
+                        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 0.75rem; width: 100%; justify-content: center;">
+                            <span style="background-color: #f8644d; color: #ffffff; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 600;">${item.price}</span>
+                            <div style="display: flex; align-items: center; font-size: 0.875rem; color: #4b5563;">
+                                <i class="fa-solid fa-ruler-combined" style="margin-right: 0.25rem; color: #3b82f6;"></i>
+                                ${item.area}
+                            </div>
+                            <span style="font-size: 0.875rem; color: #4b5563;">
+                                <i class="fa-solid fa-house" style="margin-right: 0.25rem; color: #22c55e;"></i> 
+                                ${item.type === 'nhapho' ? 'Nhà phố' : item.type === 'canho' ? 'Căn hộ' : item.type === 'bietthu' ? 'Biệt thự' : 'Đất nền'}
+                            </span>
+                        </div>
+                        <div style="margin-top: 0.5rem;">
+                            <div style="display: flex; align-items: center; font-size: 0.875rem; color: #6b7280;">
+                                <i class="fa-solid fa-location-dot" style="color: #f8644d; margin-right: 0.25rem;"></i>
+                                <span style="text-decoration: line-through;">${item.location}</span>
+                            </div>
+                            <div style="display: flex; align-items: center; font-size: 0.875rem; color: #22c55e; font-weight: 500;">
+                                <i class="fa-solid fa-map-location-dot" style="margin-right: 0.25rem;"></i> ${item.newLocation}
+                            </div>
+                        </div>
+                        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; margin-top: 0.4rem; gap: 0.75rem;">
+                            <img
+                                src="${item.authorImage}"
+                                alt="Tác giả"
+                                title="${item.authorName}"
+                                style="width: 2.5rem; height: 2.5rem; border-radius: 9999px; object-fit: cover; transition: transform 0.3s; cursor: pointer; flex-shrink: 0;"
+                                onmouseover="this.style.transform = 'scale(1.1)';"
+                                onmouseout="this.style.transform = 'scale(1)';"
+                                onclick="event.stopPropagation();"
+                            />
+                            <button
+                                style="display: flex; align-items: center; justify-content: center; background-color: #dca54a; color: #ffffff; padding: 10px 16px; border-radius: 0.5rem; font-size: 0.875rem; font-weight: 600; transition: all 0.3s; border: none; cursor: pointer; flex-grow: 1; min-width: 100px;"
+                                onmouseover="this.style.transform = 'scale(1.05)'; this.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';"
+                                onmouseout="this.style.transform = 'scale(1)'; this.style.boxShadow = 'none';"
+                                onclick="event.stopPropagation();"
+                            >
+                                <i class="fa-solid fa-phone" style="margin-right: 0.5rem;"></i> ${item.phoneNumber}
+                            </button>
+                            <button
+                                style="display: flex; align-items: center; justify-content: center; background-image: linear-gradient(to right, #10B981, #059669); color: #ffffff; padding: 10px 12px; border-radius: 0.5rem; font-size: 0.875rem; font-weight: 600; transition: all 0.3s; border: none; cursor: pointer; flex-grow: 1; min-width: 100px;"
+                                onmouseover="this.style.transform = 'scale(1.05)'; this.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';"
+                                onmouseout="this.style.transform = 'scale(1)'; this.style.boxShadow = 'none';"
+                                onclick="event.stopPropagation();"
+                            >
+                                <i class="fa-solid fa-envelope" style="margin-right: 0.25rem;"></i> Yêu cầu tư vấn
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        container.append(itemHTML);
+    });
+    
+    // Khởi tạo Slick Carousel nếu có items
+    if (items.length > 0) {
+        container.slick({
+            dots: true,
+            infinite: false,
+            speed: 300,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        infinite: true,
+                        dots: true
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
+    }
+}
+
+// thay đổi ảnh chính khi click vào ảnh thu nhỏ
 function changeImage(itemIndex, el) {
     const mainImage = document.getElementById("mainImage" + itemIndex);
     mainImage.src = el.src;
+    // section2:top
+    const mainImage2 = document.getElementById("mainImage2" + itemIndex);
+    mainImage2.src = el.src;
+       // section2:bottom
+    const mainImage3 = document.getElementById("mainImage3" + itemIndex);
+    mainImage3.src = el.src;
 
     document.querySelectorAll(".thumb-" + itemIndex).forEach((img) => {
         img.style.borderColor = "transparent";
