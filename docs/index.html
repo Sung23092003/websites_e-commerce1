@@ -959,7 +959,7 @@
           <div style="display: flex; justify-content: center; align-items: center; margin-top: 0.5rem; margin-bottom: 1rem;">
             <span style="background-color: #0282A5; width: 160px; height: 2px;"></span>
           </div>
-         <div style="padding: 0 180px;">
+         <div class="intro-text">
            <p style="color: #6b7280; font-style: italic;">Khám phá ngay cơ hội hiếm có để sở hữu bất động sản nằm tại vị trí vàng giữa trung tâm thành phố, hội tụ đầy đủ tiện ích hiện đại, tiềm năng sinh lời vượt trội và không gian sống đẳng cấp mà bạn luôn mơ ước</p>
          </div>
         </div>
@@ -1009,7 +1009,7 @@
           <div style="display: flex; justify-content: center; align-items: center; margin-top: 0.5rem; margin-bottom: 1rem;">
             <span style="background-color: #0282A5; width: 160px; height: 2px;"></span>
           </div>
-         <div style="padding: 0 180px;">
+         <div class="intro-text">
            <p style="color: #6b7280; font-style: italic;">Khám phá ngay cơ hội hiếm có để sở hữu bất động sản nằm tại vị trí vàng giữa trung tâm thành phố, hội tụ đầy đủ tiện ích hiện đại, tiềm năng sinh lời vượt trội và không gian sống đẳng cấp mà bạn luôn mơ ước</p>
          </div>
         </div>
@@ -4837,10 +4837,15 @@ function renderCarousel(container, items) {
                 <div style="background-color: #ffffff; padding: 1rem; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); width: 100%;">
                     <div style="margin-bottom: 1rem;">
                         <img
-                            id="mainImage${item.id}"
-                            src="${item.images[0]}"
-                            alt="Ảnh chính"
-                            style="width: 100%; height: 16rem; object-fit: cover; border-radius: 0.75rem;"
+                          id="mainImage${item.id}"
+                          src="${item.images[0]}"
+                          alt="Ảnh chính"
+                          style="
+                              width: 100%;
+                              aspect-ratio: 16 / 9; /* Tỉ lệ HD */
+                              object-fit: cover;
+                              border-radius: 0.75rem;
+                          "
                         />
                     </div>
                     <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
@@ -4962,10 +4967,15 @@ function renderCarousel2(container, items) {
                 <div style="background-color: #ffffff; padding: 1rem; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); width: 100%;">
                     <div style="margin-bottom: 1rem;">
                         <img
-                            id="mainImage2${item.id}"
-                            src="${item.images[0]}"
-                            alt="Ảnh chính"
-                            style="width: 100%; height: 16rem; object-fit: cover; border-radius: 0.75rem;"
+                          id="mainImage2${item.id}"
+                          src="${item.images[0]}"
+                          alt="Ảnh chính"
+                          style="
+                              width: 100%;
+                              aspect-ratio: 16 / 9; /* Tỉ lệ HD */
+                              object-fit: cover;
+                              border-radius: 0.75rem;
+                          "
                         />
                     </div>
                     <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
@@ -5084,11 +5094,16 @@ function renderCarousel3(container, items) {
             <div style="padding: 0 1rem; cursor: pointer;" onclick="window.location.href='bds-detail.html?id=${item.id}'">
                 <div style="background-color: #ffffff; padding: 1rem; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); width: 100%;">
                     <div style="margin-bottom: 1rem;">
-                        <img
-                            id="mainImage3${item.id}"
-                            src="${item.images[0]}"
-                            alt="Ảnh chính"
-                            style="width: 100%; height: 16rem; object-fit: cover; border-radius: 0.75rem;"
+                         <img
+                          id="mainImage3${item.id}"
+                          src="${item.images[0]}"
+                          alt="Ảnh chính"
+                          style="
+                              width: 100%;
+                              aspect-ratio: 16 / 9; /* Tỉ lệ HD */
+                              object-fit: cover;
+                              border-radius: 0.75rem;
+                          "
                         />
                     </div>
                     <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">

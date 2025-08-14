@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chi tiết bất động sản</title>
-    <link rel="icon" type="image/x-icon" href="admin/public/images/footer/17408141534560x60.png">
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="admin/public/images/footer/17408141534560x60.png"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       rel="stylesheet"
@@ -82,7 +86,7 @@
         background: #fff;
         border: none;
         border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         padding: 10px 12px;
         cursor: pointer;
       }
@@ -93,7 +97,7 @@
         left: 0;
         width: 100vw;
         height: 100vh;
-        background: rgba(0,0,0,0.3);
+        background: rgba(0, 0, 0, 0.3);
         z-index: 1000;
       }
       @media (max-width: 1024px) {
@@ -107,9 +111,9 @@
           max-width: 340px;
           background: #fff;
           z-index: 1002;
-          box-shadow: -2px 0 16px rgba(0,0,0,0.15);
+          box-shadow: -2px 0 16px rgba(0, 0, 0, 0.15);
           transform: translateX(100%);
-          transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           display: block;
           overflow-y: auto;
           -webkit-overflow-scrolling: touch;
@@ -139,11 +143,22 @@
       }
       /* Bổ sung: thu nhỏ kích thước item ở breakpoint nhỏ */
       @media (max-width: 1024px) {
-        .card-container { padding: 12px; }
-        .card-item { min-width: 180px; padding: 12px; }
-        .card-icon { font-size: 28px; }
-        .card-value { font-size: 16px; }
-        .card-label { font-size: 12px; }
+        .card-container {
+          padding: 12px;
+        }
+        .card-item {
+          min-width: 180px;
+          padding: 12px;
+        }
+        .card-icon {
+          font-size: 28px;
+        }
+        .card-value {
+          font-size: 16px;
+        }
+        .card-label {
+          font-size: 12px;
+        }
 
         /* Post cards smaller on tablet */
         #relatedPosts > .related-post-card,
@@ -160,15 +175,28 @@
           height: 40px;
         }
         #relatedPosts h2,
-        #latestPosts h2 { font-size: 1rem; }
+        #latestPosts h2 {
+          font-size: 1rem;
+        }
         #relatedPosts .text-sm,
-        #latestPosts .text-sm { font-size: 0.8rem; }
+        #latestPosts .text-sm {
+          font-size: 0.8rem;
+        }
       }
       @media (max-width: 640px) {
-        .card-item { min-width: 160px; padding: 10px; }
-        .card-icon { font-size: 24px; }
-        .card-value { font-size: 14px; }
-        .card-label { font-size: 12px; }
+        .card-item {
+          min-width: 160px;
+          padding: 10px;
+        }
+        .card-icon {
+          font-size: 24px;
+        }
+        .card-value {
+          font-size: 14px;
+        }
+        .card-label {
+          font-size: 12px;
+        }
 
         /* Post cards smaller on mobile */
         #relatedPosts > .related-post-card,
@@ -185,9 +213,13 @@
           height: 36px;
         }
         #relatedPosts h2,
-        #latestPosts h2 { font-size: 0.95rem; }
+        #latestPosts h2 {
+          font-size: 0.95rem;
+        }
         #relatedPosts .text-sm,
-        #latestPosts .text-sm { font-size: 0.75rem; }
+        #latestPosts .text-sm {
+          font-size: 0.75rem;
+        }
       }
     </style>
   </head>
@@ -226,7 +258,7 @@
                 id="detailMainImage"
                 src=""
                 alt="Ảnh chính"
-                class="w-full object-cover rounded-lg"
+                class="w-full object-cover rounded-lg aspect-[16/9]"
               />
             </div>
             <div
@@ -291,86 +323,112 @@
               <p class="card-label">Thời gian</p>
             </div>
           </div>
+<h2 class="text-xl font-semibold text-gray-800 mb-4 mt-8">Thông tin chi tiết</h2>
+<div class="flex gap-8 mb-8 border-b border-gray-200">
+  <a
+    href="#"
+    id="tabOverview"
+    class="py-2 text-[#2563EB] font-semibold no-underline border-b-2 border-[#2563EB]"
+    onclick="showTab('tabOverview')"
+    >Tổng quan</a
+  >
+  <a
+    href="#"
+    id="tabMap"
+    class="py-2 text-gray-500 font-medium no-underline hover:text-[#2563EB]"
+    onclick="showTab('tabMap')"
+    >Xem trên bản đồ</a
+  >
+  <a
+    href="#"
+    id="tabReview"
+    class="py-2 text-gray-500 font-medium no-underline hover:text-[#2563EB]"
+    onclick="showTab('tabReview')"
+    >Đánh giá</a
+  >
+</div>
 
+<div id="contentOverview" class="tab-content">
+  <p id="detailDescription" class="text-gray-600 leading-relaxed mb-8"></p>
+</div>
 
-          <h2 class="text-xl font-semibold text-gray-800 mb-4 mt-8">
-            Thông tin chi tiết
-          </h2>
-          <div class="flex gap-8 mb-8 border-b border-gray-200">
-            <a
-              href="#"
-              class="py-2 text-[#2563EB] font-semibold no-underline border-b-2 border-[#2563EB]"
-              >Tổng quan</a
-            >
-            <a
-              href="https://www.google.com/maps/place/S%C3%A2n+qu%E1%BA%A7n+v%E1%BB%A3t+C%C3%B4ng+%C4%90o%C3%A0n,+Quang+Trung,+%C4%90%E1%BB%91ng+%C4%90a,+H%C3%A0+N%E1%BB%99i,+Vi%E1%BB%87t+Nam/@21.0089304,105.8260662,18.46z/data=!4m6!3m5!1s0x3135ac802f3a3169:0xbb5dca04aececcff!8m2!3d21.0094398!4d105.8267364!16s%2Fg%2F11bvth4p54?hl=vi&entry=ttu&g_ep=EgoyMDI1MDgwNi4wIKXMDSoASAFQAw%3D%3D"
-              target="_blank"
-              class="py-2 text-gray-500 font-medium no-underline hover:text-[#2563EB]"
-              >Xem trên bản đồ</a
-            >
-            <a
-              href="#"
-              class="py-2 text-gray-500 font-medium no-underline hover:text-[#2563EB]"
-              >Đánh giá</a
-            >
-          </div>
-          <p
-            id="detailDescription"
-            class="text-gray-600 leading-relaxed mb-8"
-          ></p>
+<div id="contentMap" class="tab-content hidden">
+  <div class="mb-4">
+    <h3 class="text-lg font-semibold text-gray-800 mb-2">Bản đồ xem trước</h3>
+    <a href="#" id="mapLink" target="_blank" class="block w-full">
+      <iframe
+        id="mapFrame"
+        width="100%"
+        height="450"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </a>
+  </div>
+</div>
 
-          <h2 class="text-xl font-semibold text-gray-800 mb-4">Bình luận</h2>
-          <form class="flex flex-col gap-4 mb-8">
-            <textarea
-              rows="4"
-              placeholder="Mời bạn tham gia thảo luận, vui lòng nhập tiếng Việt có dấu"
-              class="p-3 border border-gray-200 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-sky-500"
-            ></textarea>
-            <div class="flex items-center gap-4">
-              <div class="flex items-center gap-2">
-                <input
-                  type="radio"
-                  id="anh"
-                  name="gender"
-                  class="focus:ring-sky-500"
-                  checked
-                />
-                <label for="anh">Anh</label>
-              </div>
-              <div class="flex items-center gap-2">
-                <input
-                  type="radio"
-                  id="chi"
-                  name="gender"
-                  class="focus:ring-sky-500"
-                />
-                <label for="chi">Chị</label>
-              </div>
-            </div>
-            <div class="flex flex-col md:flex-row gap-4">
-              <input
-                type="text"
-                placeholder="Tên và họ (*)"
-                class="flex-1 p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
-              />
-              <input
-                type="email"
-                placeholder="Email của bạn"
-                class="flex-1 p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
-              />
-              <input
-                type="tel"
-                placeholder="Số điện thoại"
-                class="flex-1 p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
-              />
-            </div>
-            <button
-              type="submit"
-              class="bg-blue-600 text-white p-3 rounded-lg border-none text-base font-semibold cursor-pointer w-fit px-8 hover:bg-blue-700 transition-colors"
-            >
-              Gửi
-            </button>
-          </form>
+<div id="contentReview" class="tab-content hidden">
+  <div class="mb-8 p-4 bg-gray-100 rounded-lg text-center text-gray-500">
+    Hiện tại chưa có bình luận nào.
+  </div>
+</div>
+
+<div id="commentSection">
+  <h2 class="text-xl font-semibold text-gray-800 mb-4">Bình luận</h2>
+  <form class="flex flex-col gap-4 mb-8">
+    <textarea
+      rows="4"
+      placeholder="Mời bạn tham gia thảo luận, vui lòng nhập tiếng Việt có dấu"
+      class="p-3 border border-gray-200 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-sky-500"
+    ></textarea>
+    <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2">
+        <input
+          type="radio"
+          id="anh"
+          name="gender"
+          class="focus:ring-sky-500"
+          checked
+        />
+        <label for="anh">Anh</label>
+      </div>
+      <div class="flex items-center gap-2">
+        <input
+          type="radio"
+          id="chi"
+          name="gender"
+          class="focus:ring-sky-500"
+        />
+        <label for="chi">Chị</label>
+      </div>
+    </div>
+    <div class="flex flex-col md:flex-row gap-4">
+      <input
+        type="text"
+        placeholder="Tên và họ (*)"
+        class="flex-1 p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
+      />
+      <input
+        type="email"
+        placeholder="Email của bạn"
+        class="flex-1 p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
+      />
+      <input
+        type="tel"
+        placeholder="Số điện thoại"
+        class="flex-1 p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
+      />
+    </div>
+    <button
+      type="submit"
+      class="bg-blue-600 text-white p-3 rounded-lg border-none text-base font-semibold cursor-pointer w-fit px-8 hover:bg-blue-700 transition-colors"
+    >
+      Gửi
+    </button>
+  </form>
+</div>
 
           <h2 class="text-xl font-semibold text-gray-800 mb-4">
             Tin cùng chuyên mục
@@ -805,14 +863,15 @@
             "Sân để xe máy, Phòng khách rộng, Bếp có hút mùi, 2 phòng ngủ, 1 toilet có quạt hút, Sân sau + giếng ....",
           price: "5.5 tỷ",
           numberBedrooms: "2 phòng",
-          houseOrientation:"Nam",
-          balconyOrientation:"Đông",
-          interiot:"Đầy đủ",
+          houseOrientation: "Nam",
+          balconyOrientation: "Đông",
+          interiot: "Đầy đủ",
           menities: "Cammera bảo vệ, PCCC",
-          times:"Ở ngay",
+          times: "Ở ngay",
           area: "72 m²",
           location: "Quận 1, TP.HCM",
           newLocation: "Vinhomes Central Park, Bình Thạnh",
+           mapPreviewUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.294156689628!2d106.69745581471815!3d10.79155949231644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f4a434d2b27%3A0x88f2c3b2d1c9f3d!2sVinhomes%20Central%20Park!5e0!3m2!1svi!2svn!4v1626245100000!5m2!1svi!2svn",
           images: [
             "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",
             "https://images.pexels.com/photos/1546166/pexels-photo-1546166.jpeg",
@@ -822,8 +881,7 @@
             "https://images.pexels.com/photos/7018257/pexels-photo-7018257.jpeg",
             "https://images.pexels.com/photos/7018247/pexels-photo-7018247.jpeg",
             "https://images.pexels.com/photos/6527052/pexels-photo-6527052.jpeg",
-            "https://images.pexels.com/photos/6487954/pexels-photo-6487954.jpeg"
-
+            "https://images.pexels.com/photos/6487954/pexels-photo-6487954.jpeg",
           ],
           breadcrumbs: [
             { text: "Mua bán nhà", link: "#" },
@@ -834,7 +892,8 @@
             name: "Nguyễn Thị Nhung",
             bio: "Nhà môi giới uy tín, chuyên đất nền",
             location: "Lâm Đồng",
-            image: "https://studiochupanhdep.com/Upload/Images/Album/hinh-anh-profile-01.jpg",
+            image:
+              "https://studiochupanhdep.com/Upload/Images/Album/hinh-anh-profile-01.jpg",
             phone: "0847865568",
           },
         },
@@ -845,16 +904,17 @@
             "Căn hộ gồm 2 phòng ngủ, 2 toilet, có ban công thoáng đãng và được trang bị đầy đủ tiện nghi, mang đến không gian sống tiện nghi, thoải mái và hiện đại.",
           price: "3.5 tỷ",
           numberBedrooms: "2 phòng",
-          houseOrientation:"Nam",
-          balconyOrientation:"Đông",
-          interiot:"Đầy đủ",
+          houseOrientation: "Nam",
+          balconyOrientation: "Đông",
+          interiot: "Đầy đủ",
           menities: "Cammera bảo vệ, PCCC",
-          times:"Ở ngay",
+          times: "Ở ngay",
           area: "72 m²",
           location: "Quận 1, TP.HCM",
           newLocation: "Vinhomes Central Park, Bình Thạnh",
+           mapPreviewUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.294156689628!2d106.69745581471815!3d10.79155949231644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f4a434d2b27%3A0x88f2c3b2d1c9f3d!2sVinhomes%20Central%20Park!5e0!3m2!1svi!2svn!4v1626245100000!5m2!1svi!2svn",
           images: [
-           "https://images.pexels.com/photos/1974596/pexels-photo-1974596.jpeg",
+            "https://images.pexels.com/photos/1974596/pexels-photo-1974596.jpeg",
             "https://images.pexels.com/photos/1475938/pexels-photo-1475938.jpeg",
             "https://images.pexels.com/photos/18950082/pexels-photo-18950082.jpeg",
             "https://images.pexels.com/photos/12235857/pexels-photo-12235857.jpeg",
@@ -868,7 +928,8 @@
             name: "Nguyễn Văn Quang",
             bio: "Chuyên viên tư vấn căn hộ cao cấp",
             location: "Hà Nội",
-            image: "https://studiochupanhdep.com/Upload/Images/Album/anh-cv-02.jpg",
+            image:
+              "https://studiochupanhdep.com/Upload/Images/Album/anh-cv-02.jpg",
             phone: "0912345678",
           },
         },
@@ -879,14 +940,15 @@
             "Biệt thự 3 tầng với sân vườn rộng rãi, hồ bơi riêng và gara ô tô, mang đến không gian sống sang trọng, tiện nghi và gần gũi với thiên nhiên.",
           price: "6.5 tỷ",
           numberBedrooms: "2 phòng",
-          houseOrientation:"Nam",
-          balconyOrientation:"Đông",
-          interiot:"Đầy đủ",
+          houseOrientation: "Nam",
+          balconyOrientation: "Đông",
+          interiot: "Đầy đủ",
           menities: "Cammera bảo vệ, PCCC",
-          times:"Ở ngay",
+          times: "Ở ngay",
           area: "82 m²",
           location: "Quận 1, TP.HCM",
           newLocation: "Vinhomes Central Park, Bình Thạnh",
+           mapPreviewUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.294156689628!2d106.69745581471815!3d10.79155949231644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f4a434d2b27%3A0x88f2c3b2d1c9f3d!2sVinhomes%20Central%20Park!5e0!3m2!1svi!2svn!4v1626245100000!5m2!1svi!2svn",
           images: [
             "https://images.pexels.com/photos/1438834/pexels-photo-1438834.jpeg",
             "https://images.pexels.com/photos/13765014/pexels-photo-13765014.jpeg",
@@ -902,27 +964,29 @@
             name: "Trần Thị Lan",
             bio: "Chuyên gia đất nền nghỉ dưỡng",
             location: "Đà Lạt",
-            image: "https://www.paratime.vn/wp-content/uploads/2019/09/timestudio.vn-corporate-headshot-pricing-01.jpg",
+            image:
+              "https://www.paratime.vn/wp-content/uploads/2019/09/timestudio.vn-corporate-headshot-pricing-01.jpg",
             phone: "0987654321",
           },
         },
-         {
+        {
           id: 4,
           title: "Bán lô đất nền thổ cư, sổ đỏ chính chủ, đường lớn",
           description:
             "Lô đất vuông vắn với mặt tiền đường rộng 12m, vị trí đắc địa gần chợ và trường học, thuận tiện cho kinh doanh hoặc xây dựng nhà ở.",
           price: "6.5 tỷ",
           numberBedrooms: "2 phòng",
-          houseOrientation:"Nam",
-          balconyOrientation:"Đông",
-          interiot:"Đầy đủ",
+          houseOrientation: "Nam",
+          balconyOrientation: "Đông",
+          interiot: "Đầy đủ",
           menities: "Cammera bảo vệ, PCCC",
-          times:"Ở ngay",
+          times: "Ở ngay",
           area: "82 m²",
           location: "Quận 1, TP.HCM",
           newLocation: "Vinhomes Central Park, Bình Thạnh",
+           mapPreviewUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.294156689628!2d106.69745581471815!3d10.79155949231644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f4a434d2b27%3A0x88f2c3b2d1c9f3d!2sVinhomes%20Central%20Park!5e0!3m2!1svi!2svn!4v1626245100000!5m2!1svi!2svn",
           images: [
-             "https://images.pexels.com/photos/1795507/pexels-photo-1795507.jpeg",
+            "https://images.pexels.com/photos/1795507/pexels-photo-1795507.jpeg",
             "https://images.pexels.com/photos/1795508/pexels-photo-1795508.jpeg",
             "https://images.pexels.com/photos/28458312/pexels-photo-28458312.jpeg",
             "https://images.pexels.com/photos/13104516/pexels-photo-13104516.jpeg",
@@ -936,25 +1000,27 @@
             name: "Trần Thị Hạnh",
             bio: "Chuyên gia đất nền nghỉ dưỡng",
             location: "Đà Lạt",
-            image: "https://topstudio.com.vn/wp-content/uploads/2023/02/chup-hinh-chan-dung-cv-chuyen-nghiep-hcm-3-1.jpg",
+            image:
+              "https://topstudio.com.vn/wp-content/uploads/2023/02/chup-hinh-chan-dung-cv-chuyen-nghiep-hcm-3-1.jpg",
             phone: "0987654321",
           },
         },
-         {
+        {
           id: 5,
           title: "Nhà phố 4 tầng, thiết kế hiện đại, đầy đủ nội thất",
           description:
             "Nhà mới xây gồm 4 phòng ngủ, 3 toilet, có ban công và sân thượng, thiết kế hiện đại, không gian thoáng mát và đầy đủ tiện nghi.",
           price: "6.5 tỷ",
           numberBedrooms: "2 phòng",
-          houseOrientation:"Nam",
-          balconyOrientation:"Đông",
-          interiot:"Đầy đủ",
+          houseOrientation: "Nam",
+          balconyOrientation: "Đông",
+          interiot: "Đầy đủ",
           menities: "Cammera bảo vệ, PCCC",
-          times:"Ở ngay",
+          times: "Ở ngay",
           area: "82 m²",
           location: "Quận 1, TP.HCM",
           newLocation: "Vinhomes Central Park, Bình Thạnh",
+           mapPreviewUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.294156689628!2d106.69745581471815!3d10.79155949231644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f4a434d2b27%3A0x88f2c3b2d1c9f3d!2sVinhomes%20Central%20Park!5e0!3m2!1svi!2svn!4v1626245100000!5m2!1svi!2svn",
           images: [
             "https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg",
             "https://images.pexels.com/photos/9899872/pexels-photo-9899872.jpeg",
@@ -970,7 +1036,8 @@
             name: "Trần Thị Thanh",
             bio: "Chuyên gia đất nền nghỉ dưỡng",
             location: "Đà Lạt",
-            image: "https://media.lilybridal.vn/wp-content/uploads/2023/12/gao-nau-chup-anh-profile-ca-nhan-1.webp",
+            image:
+              "https://media.lilybridal.vn/wp-content/uploads/2023/12/gao-nau-chup-anh-profile-ca-nhan-1.webp",
             phone: "0987654321",
           },
         },
@@ -981,16 +1048,17 @@
             "Căn hộ đầy đủ tiện nghi, thiết kế sang trọng, view sông Sài Gòn...",
           price: "6.5 tỷ",
           numberBedrooms: "2 phòng",
-          houseOrientation:"Nam",
-          balconyOrientation:"Đông",
-          interiot:"Đầy đủ",
+          houseOrientation: "Nam",
+          balconyOrientation: "Đông",
+          interiot: "Đầy đủ",
           menities: "Cammera bảo vệ, PCCC",
-          times:"Ở ngay",
+          times: "Ở ngay",
           area: "82 m²",
           location: "Quận 1, TP.HCM",
           newLocation: "Vinhomes Central Park, Bình Thạnh",
+           mapPreviewUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.294156689628!2d106.69745581471815!3d10.79155949231644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f4a434d2b27%3A0x88f2c3b2d1c9f3d!2sVinhomes%20Central%20Park!5e0!3m2!1svi!2svn!4v1626245100000!5m2!1svi!2svn",
           images: [
-             "https://images.pexels.com/photos/448360/pexels-photo-448360.jpeg",
+            "https://images.pexels.com/photos/448360/pexels-photo-448360.jpeg",
             "https://images.pexels.com/photos/463935/pexels-photo-463935.jpeg",
             "https://images.pexels.com/photos/5824520/pexels-photo-5824520.jpeg",
             "https://images.pexels.com/photos/5824533/pexels-photo-5824533.jpeg",
@@ -1004,7 +1072,8 @@
             name: "Trần Thị Hạnh",
             bio: "Chuyên gia đất nền nghỉ dưỡng",
             location: "Đà Lạt",
-            image: "https://topstudio.com.vn/wp-content/uploads/2023/02/chup-hinh-chan-dung-cv-chuyen-nghiep-hcm-3-1.jpg",
+            image:
+              "https://topstudio.com.vn/wp-content/uploads/2023/02/chup-hinh-chan-dung-cv-chuyen-nghiep-hcm-3-1.jpg",
             phone: "0987654321",
           },
         },
@@ -1015,14 +1084,15 @@
             "Biệt thự 2 tầng, có vườn cây, hồ bơi, phù hợp nghỉ dưỡng, có sân to rộng ,...",
           price: "6.5 tỷ",
           numberBedrooms: "2 phòng",
-          houseOrientation:"Nam",
-          balconyOrientation:"Đông",
-          interiot:"Đầy đủ",
+          houseOrientation: "Nam",
+          balconyOrientation: "Đông",
+          interiot: "Đầy đủ",
           menities: "Cammera bảo vệ, PCCC",
-          times:"Ở ngay",
+          times: "Ở ngay",
           area: "82 m²",
           location: "Quận 1, TP.HCM",
           newLocation: "Vinhomes Central Park, Bình Thạnh",
+           mapPreviewUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.294156689628!2d106.69745581471815!3d10.79155949231644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f4a434d2b27%3A0x88f2c3b2d1c9f3d!2sVinhomes%20Central%20Park!5e0!3m2!1svi!2svn!4v1626245100000!5m2!1svi!2svn",
           images: [
             "https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg",
             "https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg",
@@ -1038,25 +1108,27 @@
             name: "Trần Thị Hạnh",
             bio: "Chuyên gia đất nền nghỉ dưỡng",
             location: "Đà Lạt",
-            image: "https://topstudio.com.vn/wp-content/uploads/2023/02/chup-hinh-chan-dung-cv-chuyen-nghiep-hcm-3-1.jpg",
+            image:
+              "https://topstudio.com.vn/wp-content/uploads/2023/02/chup-hinh-chan-dung-cv-chuyen-nghiep-hcm-3-1.jpg",
             phone: "0987654321",
           },
         },
-         {
+        {
           id: 8,
           title: "Lô đất nền gần ven biển, tiềm năng du lịch lớn",
           description:
             "Sân để xe máy, Phòng khách rộng, Bếp có hút mùi, 2 phòng ngủ, 1 toilet có quạt hút, Sân sau + giếng ....",
           price: "6.5 tỷ",
           numberBedrooms: "2 phòng",
-          houseOrientation:"Nam",
-          balconyOrientation:"Đông",
-          interiot:"Đầy đủ",
+          houseOrientation: "Nam",
+          balconyOrientation: "Đông",
+          interiot: "Đầy đủ",
           menities: "Cammera bảo vệ, PCCC",
-          times:"Ở ngay",
+          times: "Ở ngay",
           area: "82 m²",
           location: "Quận 1, TP.HCM",
           newLocation: "Vinhomes Central Park, Bình Thạnh",
+           mapPreviewUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.294156689628!2d106.69745581471815!3d10.79155949231644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f4a434d2b27%3A0x88f2c3b2d1c9f3d!2sVinhomes%20Central%20Park!5e0!3m2!1svi!2svn!4v1626245100000!5m2!1svi!2svn",
           images: [
             "https://images.pexels.com/photos/7601264/pexels-photo-7601264.jpeg",
             "https://images.pexels.com/photos/1444424/pexels-photo-1444424.jpeg",
@@ -1072,26 +1144,28 @@
             name: "Trần Thị Hạnh",
             bio: "Chuyên gia đất nền nghỉ dưỡng",
             location: "Đà Lạt",
-            image: "https://topstudio.com.vn/wp-content/uploads/2023/02/chup-hinh-chan-dung-cv-chuyen-nghiep-hcm-3-1.jpg",
+            image:
+              "https://topstudio.com.vn/wp-content/uploads/2023/02/chup-hinh-chan-dung-cv-chuyen-nghiep-hcm-3-1.jpg",
             phone: "0987654321",
           },
         },
-           {
+        {
           id: 9,
           title: "Bán nhà phố mặt tiền kinh doanh, vị trí siêu đẹp",
           description:
             "Sân để xe máy, Phòng khách rộng, Bếp có hút mùi, 2 phòng ngủ, 1 toilet có quạt hút, Sân sau + giếng ....",
           price: "6.5 tỷ",
           numberBedrooms: "2 phòng",
-          houseOrientation:"Nam",
-          balconyOrientation:"Đông",
-          interiot:"Đầy đủ",
+          houseOrientation: "Nam",
+          balconyOrientation: "Đông",
+          interiot: "Đầy đủ",
           menities: "Cammera bảo vệ, PCCC",
-          times:"Ở ngay",
+          times: "Ở ngay",
           area: "82 m²",
           location: "Quận 1, TP.HCM",
           newLocation: "Vinhomes Central Park, Bình Thạnh",
-           images: [
+           mapPreviewUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.294156689628!2d106.69745581471815!3d10.79155949231644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f4a434d2b27%3A0x88f2c3b2d1c9f3d!2sVinhomes%20Central%20Park!5e0!3m2!1svi!2svn!4v1626245100000!5m2!1svi!2svn",
+          images: [
             "https://images.pexels.com/photos/323775/pexels-photo-323775.jpeg",
             "https://images.pexels.com/photos/3709404/pexels-photo-3709404.jpeg",
             "https://images.pexels.com/photos/275484/pexels-photo-275484.jpeg",
@@ -1106,25 +1180,27 @@
             name: "Trần Thị Hạnh",
             bio: "Chuyên gia đất nền nghỉ dưỡng",
             location: "Đà Lạt",
-            image: "https://topstudio.com.vn/wp-content/uploads/2023/02/chup-hinh-chan-dung-cv-chuyen-nghiep-hcm-3-1.jpg",
+            image:
+              "https://topstudio.com.vn/wp-content/uploads/2023/02/chup-hinh-chan-dung-cv-chuyen-nghiep-hcm-3-1.jpg",
             phone: "0987654321",
           },
         },
-          {
+        {
           id: 10,
           title: "Đất nền khu dân cư mới, giá rẻ, sổ hồng riêng",
           description:
             "Sân để xe máy, Phòng khách rộng, Bếp có hút mùi, 2 phòng ngủ, 1 toilet có quạt hút, Sân sau + giếng ....",
           price: "6.5 tỷ",
           numberBedrooms: "2 phòng",
-          houseOrientation:"Nam",
-          balconyOrientation:"Đông",
-          interiot:"Đầy đủ",
+          houseOrientation: "Nam",
+          balconyOrientation: "Đông",
+          interiot: "Đầy đủ",
           menities: "Cammera bảo vệ, PCCC",
-          times:"Ở ngay",
+          times: "Ở ngay",
           area: "82 m²",
           location: "Quận 1, TP.HCM",
           newLocation: "Vinhomes Central Park, Bình Thạnh",
+           mapPreviewUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.294156689628!2d106.69745581471815!3d10.79155949231644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f4a434d2b27%3A0x88f2c3b2d1c9f3d!2sVinhomes%20Central%20Park!5e0!3m2!1svi!2svn!4v1626245100000!5m2!1svi!2svn",
           images: [
             "https://images.pexels.com/photos/14613702/pexels-photo-14613702.jpeg",
             "https://images.pexels.com/photos/14036246/pexels-photo-14036246.jpeg",
@@ -1140,7 +1216,8 @@
             name: "Trần Thị Hạnh",
             bio: "Chuyên gia đất nền nghỉ dưỡng",
             location: "Đà Lạt",
-            image: "https://topstudio.com.vn/wp-content/uploads/2023/02/chup-hinh-chan-dung-cv-chuyen-nghiep-hcm-3-1.jpg",
+            image:
+              "https://topstudio.com.vn/wp-content/uploads/2023/02/chup-hinh-chan-dung-cv-chuyen-nghiep-hcm-3-1.jpg",
             phone: "0987654321",
           },
         },
@@ -1158,12 +1235,23 @@
             item.description;
           document.getElementById("detailArea").innerText = item.area;
           document.getElementById("detailPrice").innerText = item.price;
-          document.getElementById("detailNumberBedRooms").innerText = item.numberBedrooms;
-          document.getElementById("detailHouseOrientation").innerText = item.houseOrientation;
-          document.getElementById("detailBalconyOrientation").innerText = item.balconyOrientation;
+          document.getElementById("detailNumberBedRooms").innerText =
+            item.numberBedrooms;
+          document.getElementById("detailHouseOrientation").innerText =
+            item.houseOrientation;
+          document.getElementById("detailBalconyOrientation").innerText =
+            item.balconyOrientation;
           document.getElementById("detailInteriot").innerText = item.interiot;
           document.getElementById("detailMenities").innerText = item.menities;
           document.getElementById("detailTimes").innerText = item.times;
+
+          // Cập nhật thông tin bản đồ
+   const mapFrame = document.getElementById("mapFrame");
+    const mapLink = document.getElementById("mapLink");
+    if (mapFrame && mapLink) {
+      mapFrame.src = item.mapPreviewUrl;
+      mapLink.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.newLocation)}`;
+    }
 
           // Update breadcrumbs
           const breadcrumbContainer = document.getElementById(
@@ -1274,29 +1362,36 @@
         }
       }
 
-        function createPostHTML(post) {
+      function createPostHTML(post) {
         return `
-        <div class="bg-white p-4 rounded-xl shadow-md max-w-sm flex-grow related-post-card transition-transform duration-300 hover:scale-105" onclick="window.location.href='bds-detail.html?id=${post.id}'">
+        <div class="bg-white cursor-pointer p-4 rounded-xl shadow-md max-w-sm flex-grow related-post-card transition-transform duration-300 hover:scale-105" onclick="window.location.href='bds-detail.html?id=${
+          post.id
+        }'">
           <div class="mb-4">
-            <img src="${post.images[0]}" alt="Ảnh chính" class="w-full object-cover rounded-lg related-post-image" />
+             <img 
+    src="${post.images[0]}" 
+    alt="Ảnh chính" 
+    class="w-full aspect-video object-cover rounded-lg related-post-image" 
+  />
           </div>
-          <div class="flex flex-wrap gap-2 mb-4 post-thumbs">
-            ${post.images
-              .slice(0, 4)
-              .map(
-                (image, index) => `
-                <img
-                  src="${image}"
-                  alt="Ảnh phụ ${index + 1}"
-                  class="w-1/5 h-12 object-cover rounded-md cursor-pointer border-2 ${
-                    index === 0 ? "border-green-500" : "border-transparent"
-                  } transition-colors duration-300"
-                  onclick="event.stopPropagation(); const card=this.closest('.related-post-card'); card.querySelector('.related-post-image').src = this.src; outlineActiveCard(card); updatePostThumbnailBorder(this);"
-                />
-              `
-              )
-              .join("")}
-          </div>
+         <div class="flex flex-wrap gap-1 mb-4 post-thumbs">
+  ${post.images
+    .slice(0, 4)
+    .map(
+      (image, index) => `
+      <img
+        src="${image}"
+        alt="Ảnh phụ ${index + 1}"
+        class="w-[23%] lg:w-[24%] h-20 lg:h-16 object-cover rounded-md cursor-pointer border-2 ${
+          index === 0 ? "border-green-500" : "border-transparent"
+        } transition-colors duration-300"
+        onclick="event.stopPropagation(); const card=this.closest('.related-post-card'); card.querySelector('.related-post-image').src = this.src; outlineActiveCard(card); updatePostThumbnailBorder(this);"
+      />
+    `
+    )
+    .join("")}
+</div>
+
           <div class="flex flex-col gap-2">
             <div>
               <h2 class="font-semibold text-lg leading-7">
@@ -1307,9 +1402,13 @@
               </p>
             </div>
             <div class="flex items-center gap-8 mt-3 w-full justify-center">
-              <span class="bg-[#F8644D] text-white px-3 py-1 rounded-full text-sm font-semibold">${post.price}</span>
+              <span class="bg-[#F8644D] text-white px-3 py-1 rounded-full text-sm font-semibold">${
+                post.price
+              }</span>
               <div class="flex items-center text-sm text-gray-600">
-                <i class="fa-solid fa-ruler-combined mr-1 text-blue-500"></i>${post.area}
+                <i class="fa-solid fa-ruler-combined mr-1 text-blue-500"></i>${
+                  post.area
+                }
               </div>
               <span class="text-sm text-gray-600"><i class="fa-solid fa-house mr-1 text-green-500"></i> Bán nhà</span>
             </div>
@@ -1319,34 +1418,34 @@
                 <span class="line-through">${post.location}</span>
               </div>
               <div class="flex items-center text-sm text-green-500 font-medium">
-                <i class="fa-solid fa-map-location-dot mr-1"></i> ${post.newLocation}
+                <i class="fa-solid fa-map-location-dot mr-1"></i> ${
+                  post.newLocation
+                }
               </div>
             </div>
           </div>
-          <div class="flex items-center gap-2 mt-4">
-            <img src="${post.contact.image}" alt="Tác giả"   style="
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 9999px;
-    object-fit: cover;
-    transition: transform 0.3s;
-    cursor: pointer;
-    flex-shrink: 0;
-  " />
-            <button
-              class="flex items-center justify-center bg-[#DCA54A] text-white px-3 py-2 rounded-lg font-semibold text-sm flex-1 hover:opacity-80 transition-colors"
-              onclick="event.stopPropagation(); window.location.href='tel:${post.contact.phone}'"
-            >
-              <i class="fa-solid fa-phone mr-2"></i> ${post.contact.phone}
-            </button>
-            <button
-              class="flex items-center justify-center  bg-[linear-gradient(to_right,#10B981,#059669)] text-white px-3  py-2 rounded-lg font-semibold text-sm flex-1 hover:opacity-80 transition-colors"
-              onclick="event.stopPropagation(); window.location.href='https://zalo.me/${post.contact.phone}'"
-            >
-              <i class="fa fa-envelope mr-2"></i> Tư vấn
-            </button>
-          </div>
-        </div>
+ <div class="flex items-center gap-2 mt-4 flex-wrap">
+  <img
+    src="${post.contact.image}"
+    alt="Tác giả"
+    class="w-10 h-10 rounded-full object-cover transition-transform duration-300 cursor-pointer flex-shrink-0"
+onclick="event.stopPropagation();"
+    />
+  <div class="flex flex-grow gap-2 md:flex-row flex-wrap">
+    <button
+      class="flex items-center justify-center bg-[#DCA54A] text-white px-3 py-2 rounded-lg font-semibold text-sm w-full md:w-auto md:flex-1 hover:opacity-80 transition-colors"
+      onclick="event.stopPropagation(); window.location.href='tel:${post.contact.phone}'"
+    >
+      <i class="fa-solid fa-phone mr-2"></i> ${post.contact.phone}
+    </button>
+    <button
+      class="flex items-center justify-center bg-[linear-gradient(to_right,#10B981,#059669)] text-white px-3 py-2 rounded-lg font-semibold text-sm w-full md:w-auto md:flex-1 hover:opacity-80 transition-colors"
+      onclick="event.stopPropagation(); window.location.href='https://zalo.me/${post.contact.phone}'"
+    >
+      <i class="fa fa-envelope mr-2"></i> Yêu cầu tư vấn
+    </button>
+  </div>
+  </div>
       `;
       }
       function toggleMenu(element) {
@@ -1358,53 +1457,102 @@
         }
       }
 
-      document.addEventListener("DOMContentLoaded", displayRealEstateDetail);
+// Gọi hàm displayRealEstateDetail khi trang được tải
+document.addEventListener("DOMContentLoaded", () => {
+  displayRealEstateDetail();
+  // Hiển thị tab "Tổng quan" mặc định khi tải trang
+  showTab('tabOverview');
+});
+
+
+// Hàm chuyển đổi tab
+function showTab(tabId) {
+  // Lấy tất cả các tab và nội dung
+  const tabs = document.querySelectorAll(".flex.gap-8 a");
+  const tabContents = document.querySelectorAll(".tab-content");
+  const commentSection = document.getElementById("commentSection");
+
+  // Ẩn tất cả nội dung và reset style của tab
+  tabContents.forEach((content) => content.classList.add("hidden"));
+  tabs.forEach((tab) => {
+    tab.classList.remove("text-[#2563EB]", "border-b-2", "border-[#2563EB]");
+    tab.classList.add("text-gray-500", "font-medium", "hover:text-[#2563EB]");
+  });
+
+  // Hiển thị nội dung của tab được chọn và cập nhật style
+  const selectedTab = document.getElementById(tabId);
+  const selectedContentId = `content${tabId.replace("tab", "")}`;
+  const selectedContent = document.getElementById(selectedContentId);
+
+  if (selectedTab && selectedContent) {
+    selectedTab.classList.add(
+      "text-[#2563EB]",
+      "font-semibold",
+      "border-b-2",
+      "border-[#2563EB]"
+    );
+    selectedTab.classList.remove(
+      "text-gray-500",
+      "font-medium",
+      "hover:text-[#2563EB]"
+    );
+    selectedContent.classList.remove("hidden");
+  }
+
+  // Logic hiển thị/ẩn form bình luận
+  if (tabId === 'tabMap') {
+    commentSection.classList.add("hidden");
+  } else {
+    commentSection.classList.remove("hidden");
+  }
+}
 
       function updatePostThumbnailBorder(imgEl) {
-        const thumbContainer = imgEl.closest('.related-post-card').querySelectorAll('img');
+        const thumbContainer = imgEl
+          .closest(".related-post-card")
+          .querySelectorAll("img");
         thumbContainer.forEach((el) => {
           if (el !== imgEl) {
-            el.classList.remove('border-green-500');
-            if (el.classList.contains('border-2')) {
-              el.classList.add('border-transparent');
+            el.classList.remove("border-green-500");
+            if (el.classList.contains("border-2")) {
+              el.classList.add("border-transparent");
             }
           }
         });
-        imgEl.classList.remove('border-transparent');
-        imgEl.classList.add('border-green-500');
+        imgEl.classList.remove("border-transparent");
+        imgEl.classList.add("border-green-500");
       }
 
       function outlineActiveCard(cardEl) {
-        document.querySelectorAll('.related-post-card').forEach((card) => {
-        });
+        document.querySelectorAll(".related-post-card").forEach((card) => {});
       }
 
-      const sidebar = document.getElementById('sidebar');
-      const sidebarToggle = document.getElementById('sidebarToggle');
-      const sidebarOverlay = document.getElementById('sidebarOverlay');
+      const sidebar = document.getElementById("sidebar");
+      const sidebarToggle = document.getElementById("sidebarToggle");
+      const sidebarOverlay = document.getElementById("sidebarOverlay");
       if (sidebar && sidebarToggle && sidebarOverlay) {
-        sidebarToggle.addEventListener('click', function() {
-          sidebar.classList.add('open');
-          sidebarOverlay.classList.add('active');
-          document.body.style.overflow = 'hidden';
+        sidebarToggle.addEventListener("click", function () {
+          sidebar.classList.add("open");
+          sidebarOverlay.classList.add("active");
+          document.body.style.overflow = "hidden";
         });
-        sidebarOverlay.addEventListener('click', function() {
-          sidebar.classList.remove('open');
-          sidebarOverlay.classList.remove('active');
-          document.body.style.overflow = '';
+        sidebarOverlay.addEventListener("click", function () {
+          sidebar.classList.remove("open");
+          sidebarOverlay.classList.remove("active");
+          document.body.style.overflow = "";
         });
         // Đóng sidebar khi resize về desktop
-        window.addEventListener('resize', function() {
+        window.addEventListener("resize", function () {
           if (window.innerWidth > 1024) {
-            sidebar.classList.remove('open');
-            sidebarOverlay.classList.remove('active');
+            sidebar.classList.remove("open");
+            sidebarOverlay.classList.remove("active");
           }
         });
         // Đóng bằng phím Escape
-        window.addEventListener('keydown', function(e) {
-          if (e.key === 'Escape') {
-            sidebar.classList.remove('open');
-            sidebarOverlay.classList.remove('active');
+        window.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") {
+            sidebar.classList.remove("open");
+            sidebarOverlay.classList.remove("active");
           }
         });
       }
