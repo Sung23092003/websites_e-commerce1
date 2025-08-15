@@ -845,7 +845,7 @@
         </div>
       </div>
     </header>
-
+ <main> 
     <button id="sidebarToggle" aria-label="Mở menu">
       <i class="fa fa-bars fa-2x"></i>
     </button>
@@ -1609,6 +1609,7 @@
       </div>
       
     </div>
+    </main>
  <footer class="fe-footer">
       <section>
         <svg class="waves position-relative w-100" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
@@ -2253,7 +2254,7 @@
                     <i class="fa-solid fa-house text-gray-500 mr-1"></i> Home
                 </a>
             </li>
-            <span class="text-gray-400">/</span>
+            <span class="text-gray-400">></span>
           `;
           item.breadcrumbs.forEach((crumb, index) => {
             const li = document.createElement("li");
@@ -2270,7 +2271,7 @@
 
             if (index < item.breadcrumbs.length - 1) {
               const separator = document.createElement("li");
-              separator.innerHTML = `<span class="text-gray-400">/</span>`;
+              separator.innerHTML = `<span class="text-gray-400">></span>`;
               breadcrumbContainer.appendChild(separator);
             }
           });
