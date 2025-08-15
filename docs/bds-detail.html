@@ -10,6 +10,7 @@
     <link href="public/assets/style.css" rel="stylesheet" type="text/css">
     <link href="public/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="public/css/product/base.css" type="text/css">
+    <link href="public/assets/home.css" rel="stylesheet" type="text/css">
 
     <link rel="stylesheet" href="public/css/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -1778,11 +1779,69 @@
         </div>
       </div>
     </div>
+    
     <script src="public/assets/js/jquery.min.js"></script>
+    
     <script src="public/js/home.js"></script>
       
     <script src="public/js/custom.js"></script>
+      <script>
+      jQuery(document).ready(function($) {
+          $('.menu-slider-wrapper').each(function() {
+              var $wrapper = $(this);
+              var $scrollContainer = $wrapper.find('.menu-scroll-container');
+              var $prev = $wrapper.find('.nav-prev');
+              var $next = $wrapper.find('.nav-next');
+              var scrollAmount = 150;
       
+              function updateNavButtons() {
+              var container = $scrollContainer.get(0);
+              if (!container) return;
+      
+              var scrollLeft = container.scrollLeft;
+              var maxScrollLeft = container.scrollWidth - container.clientWidth;
+      
+              if (scrollLeft <= 0) {
+                  $prev.addClass('d-none');
+              } else {
+                  $prev.removeClass('d-none');
+              }
+      
+              if (scrollLeft >= maxScrollLeft - 1) {
+                  $next.addClass('d-none');
+              } else {
+                  $next.removeClass('d-none');
+              }
+              }
+      
+              function checkOverflow() {
+              var container = $scrollContainer.get(0);
+              if (!container) return;
+      
+              if (container.scrollWidth > container.clientWidth) {
+                  updateNavButtons();
+              } else {
+                  $prev.addClass('d-none');
+                  $next.addClass('d-none');
+              }
+              }
+      
+              $next.on('click', function() {
+              $scrollContainer.animate({ scrollLeft: '+=' + scrollAmount }, 300, updateNavButtons);
+              });
+      
+              $prev.on('click', function() {
+              $scrollContainer.animate({ scrollLeft: '-=' + scrollAmount }, 300, updateNavButtons);
+              });
+      
+              $scrollContainer.on('scroll', updateNavButtons);
+      
+              $(window).on('resize', checkOverflow);
+      
+              checkOverflow();
+          });
+      });
+    </script>
 
     <script>
       const realEstateItems = [
