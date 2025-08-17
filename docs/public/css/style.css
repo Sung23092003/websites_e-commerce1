@@ -2755,20 +2755,11 @@ header .btn-close:before, header .btn-close:after {
   color: #333;
 }
 
-.single_product .product-info2{
-  margin-top: 2px;
-  margin-bottom: 10px;
-  color: #333;
-}
-
 .single_product .product-info-head {
   padding: 12px 0 8px;
   border-bottom: 1px solid var(--mainColor);
 }
 
-.single_product .product-info-head2{
-  padding: 12px 0 8px;
-}
 
 .single_product .product-info-ttl {
   font-weight: bold;
@@ -2792,23 +2783,6 @@ header .btn-close:before, header .btn-close:after {
 
 .single_product .product-info-content > ul > li {
   width: 50%;
-}
-
-
-.single_product .product-info-content2{
-  font-size: 14px;
-}
-
-.single_product .product-info-content2 > ul {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-}
-
-.single_product .product-info-content2 > ul > li {
-  width: 100%;
 }
 
 
@@ -3266,6 +3240,33 @@ header .btn-close:before, header .btn-close:after {
   border-bottom: none;
 }
 
+/* phần em đã chỉnh */
+.single_product .product-info2{
+  margin-top: 2px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.single_product .product-info-head2{
+  padding: 12px 0 8px;
+}
+
+
+.single_product .product-info-content2{
+  font-size: 14px;
+}
+
+.single_product .product-info-content2 > ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.single_product .product-info-content2 > ul > li {
+  width: 100%;
+}
 
 /* phần giá tiền riêng cho item 2 */
 .price-summary-box {
