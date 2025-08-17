@@ -3276,7 +3276,7 @@ header .btn-close:before, header .btn-close:after {
   background-color: transparent; 
   box-shadow: none; 
   display: flex;
-  flex-direction: row;   
+  flex-direction: row;     /* desktop: nằm ngang */
   align-items: center;   
   gap: 8px;             
 }
@@ -3297,4 +3297,14 @@ header .btn-close:before, header .btn-close:after {
 .price-note {
   font-size: 0.875rem; 
   color: #a0aec0; 
+}
+
+/* Mobile: <768px */
+@media (max-width: 768px) {
+  .price-summary-box {
+    flex-direction: column;   /* rớt xuống hàng dọc */
+    align-items: center;      /* canh giữa */
+    text-align: center;       
+    gap: 4px;                 /* khoảng cách giữa các dòng */
+  }
 }
