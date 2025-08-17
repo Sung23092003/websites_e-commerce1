@@ -2755,9 +2755,19 @@ header .btn-close:before, header .btn-close:after {
   color: #333;
 }
 
+.single_product .product-info2{
+  margin-top: 2px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
 .single_product .product-info-head {
   padding: 12px 0 8px;
   border-bottom: 1px solid var(--mainColor);
+}
+
+.single_product .product-info-head2{
+  padding: 12px 0 8px;
 }
 
 .single_product .product-info-ttl {
@@ -2783,6 +2793,24 @@ header .btn-close:before, header .btn-close:after {
 .single_product .product-info-content > ul > li {
   width: 50%;
 }
+
+
+.single_product .product-info-content2{
+  font-size: 14px;
+}
+
+.single_product .product-info-content2 > ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.single_product .product-info-content2 > ul > li {
+  width: 100%;
+}
+
 
 .single_product .product-title {
   color: var(--mainColor);
@@ -3237,3 +3265,33 @@ header .btn-close:before, header .btn-close:after {
 .special-products .product-info-head {
   border-bottom: none;
 }
+
+
+/* phần giá tiền riêng cho item 2 */
+.price-summary-box {
+    border: 2px solid #0282A5;
+    border-radius: 0.5rem; 
+    padding: 1rem;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .price-summary-title {
+    color: #1b1b1b !important; 
+    font-weight: 600;
+    font-size: 24px !important;
+  }
+
+  .price-total {
+    color: #ff0000;
+    font-size: 1.5rem; 
+    font-weight: 700; 
+  }
+
+  .price-note {
+    font-size: 0.875rem; 
+    color: #a0aec0; 
+    margin-top: 0.5rem; 
+  }

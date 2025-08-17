@@ -703,26 +703,42 @@
 
 <div class="bg-gray-100 min-h-screen font-sans flex justify-center p-8">
   <div class="max-w-[90%] w-full">
-    <!-- breadcrumb -->
-    <nav class="flex items-center text-sm w-full border-b-2 border-gray-200 pb-2" aria-label="Breadcrumb">
-      <ol class="flex items-center space-x-2">
-        <li>
-  <a href="./index.html" class="flex items-center group text-gray-700 hover:text-[#0282A5] font-semibold">
-    <span class="p-1 mr-2 rounded-full bg-gray-200 group-hover:bg-[#0282A5] group-hover:text-white transition-colors duration-1000">
-      <i class="fa-solid fa-house"></i>
-    </span>
-    Home
-  </a>
-</li>
-        <span class="text-gray-500 font-semibold">></span>
-        <li>
-          <a href="./bds.html" class="flex items-center text-gray-500 hover:text-gray-700 font-semibold">
-            Bất động sản
-          </a>
-        </li>
-      </ol>
-    </nav>
+   <!-- breadcrumb -->
+<nav class="bg-white py-2 px-3 flex flex-col text-sm w-full border-green-500 rounded-md shadow-md" aria-label="Breadcrumb">
+  <!-- breadcrumb line -->
+  <ol class="flex items-center space-x-2 mb-2">
+    <li>
+      <a href="./index.html" class="flex items-center group text-gray-700 hover:text-[#0282A5] font-semibold">
+        <span class="p-1 mr-2 rounded-full bg-gray-200 group-hover:bg-[#0282A5] group-hover:text-white transition-colors duration-300">
+          <i class="fa-solid fa-house"></i>
+        </span>
+        Trang chủ
+      </a>
+    </li>
+    <span class="text-gray-500 font-semibold">></span>
+    <li>
+      <a href="./bds.html" class="flex items-center text-gray-500 hover:text-gray-700 font-semibold">
+        Bất động sản
+      </a>
+    </li>
+  </ol>
+   <div class="w-full h-[1px] bg-gray-200"></div>
 
+  <!-- result + filter line -->
+  <div class="flex flex-col md:flex-row md:items-center md:justify-between text-gray-700">
+    <!-- Kết quả -->
+    <p class="mb-2 md:mb-0">
+      Hiển thị <span id="rangeStart">0</span>–<span id="rangeEnd">0</span> của 
+      <span id="totalResults" class="font-bold text-lg text-[#0282A5]">0</span> kết quả
+    </p>
+    <!-- Filter -->
+    <div class="flex items-center space-x-4">
+      <label class="text-[15px] font-semibold text-gray-800"><input type="radio" name="sort" class="mr-1" checked> Mới nhất</label>
+      <label class="text-[15px] font-semibold text-gray-800"><input type="radio" name="sort" class="mr-1"> Giá thấp đến cao</label>
+      <label class="text-[15px] font-semibold text-gray-800"><input type="radio" name="sort" class="mr-1"> Giá cao đến thấp</label>
+    </div>
+  </div>
+</nav>
     <!-- nội dung chính + sidebar -->
     <div class="flex gap-8 mt-4">
         <div class="w-full lg:w-[98%]">
@@ -1530,6 +1546,13 @@ const realEstateItems = [
 
     let currentPage = 1;
     const itemsPerPage = 15; // 3 items/row * 5 rows
+
+      const total = realEstateItems.length;
+  document.getElementById("totalResults").textContent = total;
+
+  // giả sử mặc định hiển thị 0–24
+  document.getElementById("rangeStart").textContent = 0;
+  document.getElementById("rangeEnd").textContent = Math.min(24, total)
 
     function renderItems(page) {
         const grid = document.getElementById("realEstateGrid");
