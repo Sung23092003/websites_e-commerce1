@@ -121,9 +121,6 @@
   border: 2px solid transparent;
   transition: border-color 0.3s;
 }
-.bds-thumbs img:hover {
-  border-color: #9ca3af;
-}
 
 .bds-content {
   display: flex;
