@@ -953,63 +953,72 @@
           </div>
         </div>
       </section>
-      <!-- bộ lọc -css trong file style.css của bds  -->
-<section class="filter-section">
-  <div class="filter-tabs">
-    <button class="tab-button active">Nhà đất bán</button>
-    <button class="tab-button">Nhà đất cho thuê</button>
-    <button class="tab-button">Dự án</button>
+     <!-- bộ lọc -css trong file style.css của bds  -->
+<section class="filter-wrapper">
+  <!-- filter -->
+  <div class="filter-section">
+    <div class="filter-tabs">
+      <button class="tab-button active">Nhà đất bán</button>
+      <button class="tab-button">Nhà đất cho thuê</button>
+      <button class="tab-button">Dự án</button>
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Trên toàn quốc" class="search-input">
+      <button class="search-button">Tìm kiếm</button>
+    </div>
+    <div class="filter-options">
+      <div class="filter-dropdown">
+        <button class="dropdown-button">Loại nhà đất</button>
+        <div class="dropdown-content">
+          <a href="#">Nhà riêng</a>
+          <a href="#">Căn hộ</a>
+          <a href="#">Đất nền</a>
+        </div>
+      </div>
+      <div class="filter-dropdown">
+        <button class="dropdown-button">Mức giá</button>
+        <div class="dropdown-content">
+          <a href="#">Dưới 1 tỷ</a>
+          <a href="#">1 - 3 tỷ</a>
+          <a href="#">Trên 3 tỷ</a>
+        </div>
+      </div>
+      <div class="filter-dropdown">
+        <button class="dropdown-button">Diện tích</button>
+        <div class="dropdown-content">
+          <a href="#">Dưới 50 m²</a>
+          <a href="#">50 - 100 m²</a>
+          <a href="#">Trên 100 m²</a>
+        </div>
+      </div>
+      <div class="filter-dropdown">
+        <button class="dropdown-button">Hướng</button>
+        <div class="dropdown-content">
+          <a href="#">Đông</a>
+          <a href="#">Tây</a>
+          <a href="#">Nam</a>
+          <a href="#">Bắc</a>
+        </div>
+      </div>
+      <div class="filter-dropdown large-dropdown">
+        <button class="dropdown-button">Đơn vị hành chính</button>
+        <div class="dropdown-content">
+          <a href="#">Hà Nội</a>
+          <a href="#">Hồ Chí Minh</a>
+          <a href="#">Đà Nẵng</a>
+          <a href="#">Hải Phòng</a>
+          <a href="#">Cần Thơ</a>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="search-bar">
-    <input type="text" placeholder="Trên toàn quốc" class="search-input">
-    <button class="search-button">Tìm kiếm</button>
-  </div>
-  <div class="filter-options">
-    <div class="filter-dropdown">
-      <button class="dropdown-button">Loại nhà đất</button>
-      <div class="dropdown-content">
-        <a href="#">Nhà riêng</a>
-        <a href="#">Căn hộ</a>
-        <a href="#">Đất nền</a>
-      </div>
-    </div>
-    <div class="filter-dropdown">
-      <button class="dropdown-button">Mức giá</button>
-      <div class="dropdown-content">
-        <a href="#">Dưới 1 tỷ</a>
-        <a href="#">1 - 3 tỷ</a>
-        <a href="#">Trên 3 tỷ</a>
-      </div>
-    </div>
-    <div class="filter-dropdown">
-      <button class="dropdown-button">Diện tích</button>
-      <div class="dropdown-content">
-        <a href="#">Dưới 50 m²</a>
-        <a href="#">50 - 100 m²</a>
-        <a href="#">Trên 100 m²</a>
-      </div>
-    </div>
-    <div class="filter-dropdown">
-      <button class="dropdown-button">Hướng</button>
-      <div class="dropdown-content">
-        <a href="#">Đông</a>
-        <a href="#">Tây</a>
-        <a href="#">Nam</a>
-        <a href="#">Bắc</a>
-      </div>
-    </div>
-    <div class="filter-dropdown large-dropdown">
-      <button class="dropdown-button">Đơn vị hành chính</button>
-      <div class="dropdown-content">
-        <a href="#">Hà Nội</a>
-        <a href="#">Hồ Chí Minh</a>
-        <a href="#">Đà Nẵng</a>
-        <a href="#">Hải Phòng</a>
-        <a href="#">Cần Thơ</a>
-      </div>
-    </div>
+
+  <!-- ảnh bên phải -->
+  <div class="filter-banner">
+    <img src="public/assets/images/filterdemo.png" alt="Quảng cáo">
   </div>
 </section>
+
      <!-- Kiểm tra sổ đỏ section -css trong file style.css của bds-->
       <section class="red-book-check-section">
   <h2 class="section-title">KIỂM TRA SỔ ĐỎ TRỰC TUYẾN</h2>

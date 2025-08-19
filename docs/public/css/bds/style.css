@@ -257,16 +257,25 @@
 }
 
 /* bộ lọc */
+.filter-wrapper {
+  display: flex;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 20px auto;
+  align-items: stretch; /* Đảm bảo filter & banner cao bằng nhau */
+}
+
+/* Filter chính */
 .filter-section {
+  flex: 1;
   font-family: Arial, sans-serif;
   padding: 20px;
   background-color: #f7f7f7;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-width: 900px;
-  margin: 20px auto;
 }
 
+/* Tabs */
 .filter-tabs {
   display: flex;
   margin-bottom: 20px;
@@ -294,6 +303,7 @@
   font-weight: bold;
 }
 
+/* Thanh tìm kiếm */
 .search-bar {
   display: flex;
   background-color: #4a4a4a;
@@ -333,46 +343,12 @@
   background-color: #c9302c;
 }
 
+/* Bộ lọc tùy chọn */
 .filter-options {
   display: flex;
   justify-content: space-between;
   gap: 10px;
-}
-
-.filter-dropdown {
-  flex: 1;
-  position: relative;
-}
-
-.dropdown-button {
-  width: 100%;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  text-align: left;
-  font-size: 14px;
-  color: #555;
-  transition: border-color 0.3s;
-}
-
-.dropdown-button:hover {
-  border-color: #aaa;
-}
-
-.dropdown-button::after {
-  content: "▼";
-  font-size: 10px;
-  margin-left: 8px;
-  float: right;
-  line-height: 1;
-}
-
-.filter-options {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
+  flex-wrap: nowrap;
 }
 
 .filter-dropdown {
@@ -412,12 +388,13 @@
   line-height: 1;
 }
 
+/* Menu xổ xuống */
 .dropdown-content {
   display: none;
   position: absolute;
   background-color: #fff;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 1;
   border-radius: 5px;
   margin-top: 5px;
@@ -438,6 +415,37 @@
   display: block;
 }
 
+/* Ảnh bên phải */
+.filter-banner {
+  flex: 0 0 350px; /* rộng hơn 250px cho cân đối */
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex; /* để stretch theo filter */
+}
+
+.filter-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ==== Responsive ==== */
+
+/* Tablet: ảnh rớt xuống 1 hàng */
+@media (max-width: 992px) {
+  .filter-wrapper {
+    flex-direction: column;
+  }
+
+  .filter-banner {
+    flex: unset;
+    width: 100%;
+    height: 250px; /* cố định chiều cao banner khi xuống dưới */
+  }
+}
+
+/* Mobile nhỏ */
 @media (max-width: 768px) {
   .filter-options {
     flex-wrap: wrap;
