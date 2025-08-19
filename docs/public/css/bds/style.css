@@ -604,42 +604,35 @@
 }
 
 /* ký gửi */
-.rs-main-section{
-  padding: 60px 20px;
+.rs-main-section {
+  padding: 40px 15px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  background-color: #f7f7f7;
+  background: #26694c;
 }
 
 .rs-main-container {
-  max-width: 1400px;
-  width: 90%;
+  max-width: 1200px;
+  width: 95%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  background-color: #26694c;
   padding: 20px;
-  border-radius: 4px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
 }
 
 .rs-header {
-  color: #ffffff;
+  color: #fff;
   text-align: center;
-  padding: 2.5rem 2rem;
+  padding: 1.6rem 1rem;
 }
-
 .rs-header h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 2rem;
   margin: 0;
+  font-weight: 700;
 }
-
 .rs-header p {
-  font-size: 1.1rem;
-  font-weight: 400;
   margin-top: 0.5rem;
+  font-size: 1rem;
   opacity: 0.9;
 }
 
@@ -651,50 +644,47 @@
 
 .rs-form-section,
 .rs-video-section {
-  padding: 2rem;
   flex: 1;
+  padding: 1.5rem;
 }
-
 .rs-form-section h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 1rem;
   text-align: center;
 }
 
 .rs-form-group {
   margin-bottom: 1rem;
 }
-
 .rs-form-group input,
 .rs-form-group select {
   width: 100%;
-  padding: 0.75rem 1rem;
+  padding: 0.7rem 1rem;
   border: none;
-  border-radius: 10px;
-  background-color: #ffffff;
-  font-size: 1rem;
+  border-radius: 8px;
+  background: #ffffff;
   color: #333;
-  transition: box-shadow 0.3s ease;
+  font-size: 1rem;
+  transition: box-shadow 0.3s;
+  border: 1px solid #2e2e2e;
 }
-
 .rs-form-group input::placeholder {
   color: #666;
   opacity: 0.8;
 }
-
 .rs-form-group input:focus,
 .rs-form-group select:focus {
+  background-color: #dadada;
   outline: none;
-  box-shadow: 0 0 0 3px #1a4f1a, 0 0 0 6px rgba(26, 79, 26, 0.5);
+  box-shadow: 0 0 0 3px #1a4f1a55;
 }
 
 .rs-form-row {
   display: flex;
   gap: 1rem;
 }
-
 .rs-form-row .rs-form-group {
   flex: 1;
 }
@@ -702,53 +692,49 @@
 .rs-submit-btn {
   width: 100%;
   padding: 1rem;
-  background-color: #23ab75;
-  color: #ffffff;
+  background: #23ab75;
+  color: #fff;
   border: none;
-  border-radius: 10px;
-  font-size: 1.1rem;
+  border-radius: 8px;
+  font-size: 1.05rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: 0.3s;
+  border: 1px solid #2e2e2e;
 }
-
 .rs-submit-btn:hover {
-  opacity: 0.8;
+  opacity: 0.85;
   transform: translateY(-2px);
 }
 
 .rs-video-section {
-  flex: 1;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
   cursor: pointer;
   overflow: hidden;
 }
-
 .rs-video-section video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 8px;
-  border: 20px solid #23ab75; 
+  border: 12px solid #23ab75;
 }
-
 .play-button {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 30px;
-  color: white;
+  font-size: 28px;
+  color: #fff;
   background: rgba(0, 0, 0, 0.5);
   border-radius: 50%;
-  padding: 10px 16px;
+  padding: 8px 14px;
   cursor: pointer;
   transition: 0.3s;
 }
-
 .play-button:hover {
   background: rgba(0, 0, 0, 0.8);
 }
@@ -757,57 +743,47 @@
 .rs-modal {
   display: none;
   position: fixed;
+  inset: 0;
   z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.7);
   justify-content: center;
   align-items: center;
 }
-
 .rs-modal-content {
-  padding: 1rem;
-  border-radius: 15px;
   width: 90%;
   max-width: 800px;
   position: relative;
+  border-radius: 12px;
 }
-
 .rs-modal-content video {
   width: 100%;
-  height: auto;
   border-radius: 10px;
 }
-
 .rs-close-btn {
   position: absolute;
-  top: -4%;
+  top: -18px;
   right: 15px;
-  color: #fff;
-  font-size: 2rem;
-  font-weight: bold;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 1.5rem;
+  border-radius: 50%;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: 0.2s;
 }
-
 .rs-close-btn:hover {
   background: rgba(0, 0, 0, 0.8);
 }
 
-/* Responsive Design */
+/* Responsive */
 @media (min-width: 768px) {
-  .rs-main-section{
-  padding: 20px 10px;
- }
+  .rs-main-section {
+    padding: 20px;
+  }
   .rs-content-wrapper {
     flex-direction: row;
   }
