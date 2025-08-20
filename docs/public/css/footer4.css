@@ -127,3 +127,10 @@
     transform: skew(24deg);
 }
 
+.footer-4 .icon-social{
+    border-radius: 8px;
+}
+
+.footer-4 .icon-social:hover{
+    opacity:0.8 ;
+}
