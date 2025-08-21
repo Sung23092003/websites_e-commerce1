@@ -2970,7 +2970,8 @@ header .btn-close:before, header .btn-close:after {
   }
 }
 .list-option span:hover {
-  background-color: #ddd;
+  background-color: var(--primary);
+  color: #fff;
 }
 
 .list-option span.active {
