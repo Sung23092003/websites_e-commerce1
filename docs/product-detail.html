@@ -969,22 +969,32 @@
                             <div class="list-option"><span class="active">Vàng</span><span>Đồng</span><span>Nhũ 7 màu</span><span>Bạc</span><span>Nhũ đen</span></div>
                           </div>
                         </div>
-                        <div class="info-item-row">
-                          <div class="info-item-dt">Ép kim Mặt:</div>
-                          <div class="info-item-dd">
-                            <div class="list-option"><span class="active">1 mặt</span><span>2 mặt</span></div>
+                    <div class="info-item-row">
+                        <div class="info-item-dt">Ép kim Mặt:</div>
+                        <div class="info-item-dd" style="align-self: center;">
+                          <div class="list-option">
+                            <label>
+                              <input type="radio" name="epkim-mat" value="1" checked>
+                              1 mặt
+                            </label>
+                            <label>
+                              <input type="radio" name="epkim-mat" value="2">
+                              2 mặt
+                            </label>
                           </div>
                         </div>
+                      </div>
+
                         <div class="info-item-row">
                           <div class="info-item-dt">Số lượng:</div>
                           <div class="info-item-dd">
-                            <div class="dropdown"><a class="dropdown-toggle select-option" id="dropdownMenuLink" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Chọn số lượng</a>
-                              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                              </ul>
-                            </div>
+                            <input 
+                              type="number" 
+                              class="form-control select-option" 
+                              placeholder="Nhập số lượng" 
+                              min="1" 
+                              step="1"
+                            >
                           </div>
                         </div>
                       </div>

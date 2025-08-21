@@ -57,6 +57,27 @@
   font-size: 0.875rem; 
   color: #a0aec0; 
 }
+.list-option {
+  display: flex;
+  gap: 20px; 
+}
+
+.list-option label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  line-height: 1.4; 
+}
+
+.list-option input[type="radio"] {
+  width: 16px;  
+  height: 16px;
+  margin: 0;     
+  vertical-align: middle; 
+}
+
 
 /* Mobile: <768px */
 @media (max-width: 768px) {
@@ -67,3 +88,5 @@
     gap: 4px;                 
   }
 }
+
+
