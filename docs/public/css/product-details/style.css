@@ -71,7 +71,7 @@
   line-height: 1.4; 
 }
 
-.list-option input[type="radio"] {
+.list-option input[type="checkbox"] {
   width: 16px;  
   height: 16px;
   margin: 0;     
