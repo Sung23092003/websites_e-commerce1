@@ -37,7 +37,7 @@ body {
 
 @media (max-width: 768px) {
   .card-item {
-    flex: 1 1 45%;
+    flex: 1 1 45%;  
   }
 }
 
@@ -168,7 +168,7 @@ body {
 }
 @media (max-width: 640px) {
   .card-item {
-    min-width: 160px;
+    min-width: 100px;
     padding: 10px;
   }
   .card-icon {
@@ -203,4 +203,184 @@ body {
   #latestPosts .text-sm {
     font-size: 0.75rem;
   }
+}
+
+/* post */
+.related-post-card {
+  background: #fff;
+  cursor: pointer;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  max-width: 400px;
+  flex-grow: 1;
+  transition: transform 0.3s ease;
+}
+.related-post-card:hover {
+  transform: scale(1.05);
+}
+
+.related-post-image-wrap {
+  margin-bottom: 16px;
+}
+.related-post-image {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.post-thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+.post-thumbs img {
+  width: 23%;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+@media (min-width: 1024px) {
+  .post-thumbs img {
+    width: 24%;
+    height: 64px;
+  }
+}
+.post-thumbs img.active {
+  border-color: #10B981;
+}
+
+.post-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.post-title {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.6;
+}
+.post-description {
+  font-size: 14px;
+  color: #666;
+  margin-top: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.post-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 12px;
+}
+.post-price {
+  background: #F8644D;
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.post-area {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #666;
+}
+.post-area i {
+  margin-right: 4px;
+  color: #3B82F6;
+}
+.post-type {
+  font-size: 14px;
+  color: #666;
+}
+.post-type i {
+  margin-right: 4px;
+  color: #10B981;
+}
+
+.post-location {
+  margin-top: 8px;
+}
+.post-location .old-location {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #666;
+  text-decoration: line-through;
+}
+.post-location .old-location i {
+  margin-right: 4px;
+  color: #F8644D;
+}
+.post-location .new-location {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: #059669;
+}
+.post-location .new-location i {
+  margin-right: 4px;
+}
+
+.post-contact {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;   
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.contact-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  flex-shrink: 0; 
+}
+
+.contact-actions {
+  display: flex;
+  flex-grow: 1;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.contact-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  flex: 1;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+  border: none;
+  min-width: 140px; 
+}
+.contact-btn:hover {
+  opacity: 0.8;
+}
+.call-btn {
+  background: #DCA54A;
+}
+.consult-btn {
+  background: linear-gradient(to right, #10B981, #059669);
+}
+.contact-btn i {
+  margin-right: 8px;
 }

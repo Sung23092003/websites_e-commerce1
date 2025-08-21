@@ -647,13 +647,10 @@
     <div id="sidebarOverlay"></div>
 
 
- <div class="bg-gray-100 min-h-screen font-sans flex justify-center p-8">
+ <div class="bg-gray-100 min-h-screen font-sans flex justify-center p-4 md:p-6 lg:p-2">
   <div class="max-w-7xl w-full flex flex-col gap-8 ">
     <nav class="flex items-center text-sm w-full border-b-2 border-gray-200 pb-2" aria-label="Breadcrumb">
-      <ol
-        class="flex items-center space-x-2"
-        id="breadcrumbContainer"
-      ></ol>
+ <ol class="flex flex-wrap items-center gap-x-2 gap-y-1" id="breadcrumbContainer">
     </nav>
     <div class="flex flex-wrap lg:flex-nowrap gap-8">
       <div
@@ -1406,6 +1403,7 @@
       </div>
       
     </div>
+    </div>
     </main>
  <footer class="fe-footer">
       <section>
@@ -2155,88 +2153,46 @@
 
       function createPostHTML(post) {
         return `
-        <div class="bg-white cursor-pointer p-4 rounded-xl shadow-md max-w-[400px] flex-grow related-post-card transition-transform duration-300 hover:scale-105" onclick="window.location.href='bds-detail.html?id=${
-          post.id
-        }'">
-          <div class="mb-4">
-             <img 
-    src="${post.images[0]}" 
-    alt="Ảnh chính" 
-    class="w-full aspect-video object-cover rounded-lg related-post-image" 
-  />
-          </div>
-         <div class="flex flex-wrap gap-1 mb-4 post-thumbs">
-  ${post.images
-    .slice(0, 4)
-    .map(
-      (image, index) => `
-      <img
-        src="${image}"
-        alt="Ảnh phụ ${index + 1}"
-        class="w-[23%] lg:w-[24%] h-20 lg:h-16 object-cover rounded-md cursor-pointer border-2 ${
-          index === 0 ? "border-green-500" : "border-transparent"
-        } transition-colors duration-300"
-        onclick="event.stopPropagation(); const card=this.closest('.related-post-card'); card.querySelector('.related-post-image').src = this.src; outlineActiveCard(card); updatePostThumbnailBorder(this);"
-      />
-    `
-    )
-    .join("")}
+     <div class="related-post-card" onclick="window.location.href='bds-detail.html?id=${post.id}'">
+  <div class="related-post-image-wrap">
+    <img src="${post.images[0]}" alt="Ảnh chính" class="related-post-image" />
+  </div>
+
+  <div class="post-thumbs">
+    <!-- thumbnails -->
+  </div>
+
+  <div class="post-content">
+    <h2 class="post-title">${post.title}</h2>
+    <p class="post-description">${post.description}</p>
+
+    <div class="post-info">
+      <span class="post-price">${post.price}</span>
+      <div class="post-area"><i class="fa-solid fa-ruler-combined"></i>${post.area}</div>
+      <span class="post-type"><i class="fa-solid fa-house"></i>Bán nhà</span>
+    </div>
+
+    <div class="post-location">
+      <div class="old-location"><i class="fa-solid fa-location-dot"></i><span>${post.location}</span></div>
+      <div class="new-location"><i class="fa-solid fa-map-location-dot"></i>${post.newLocation}</div>
+    </div>
+  </div>
+
+<div class="post-contact">
+  <img src="${post.contact.image}" alt="Tác giả" class="contact-avatar" />
+
+  <button class="contact-btn call-btn" onclick="event.stopPropagation(); window.location.href='tel:${post.contact.phone}'">
+    <i class="fa-solid fa-phone"></i> ${post.contact.phone}
+  </button>
+
+  <button class="contact-btn consult-btn" onclick="event.stopPropagation(); window.location.href='https://zalo.me/${post.contact.phone}'">
+    <i class="fa fa-envelope"></i> Yêu cầu tư vấn
+  </button>
 </div>
 
-          <div class="flex flex-col gap-2">
-            <div>
-              <h2 class="font-semibold text-lg leading-7">
-                ${post.title}
-              </h2>
-              <p class="text-sm text-gray-600 mt-1 whitespace-nowrap overflow-hidden text-ellipsis">
-                ${post.description}
-              </p>
-            </div>
-            <div class="flex items-center gap-8 mt-3 w-full justify-center">
-              <span class="bg-[#F8644D] text-white px-3 py-1 rounded-full text-sm font-semibold">${
-                post.price
-              }</span>
-              <div class="flex items-center text-sm text-gray-600">
-                <i class="fa-solid fa-ruler-combined mr-1 text-blue-500"></i>${
-                  post.area
-                }
-              </div>
-              <span class="text-sm text-gray-600"><i class="fa-solid fa-house mr-1 text-green-500"></i> Bán nhà</span>
-            </div>
-            <div class="mt-2">
-              <div class="flex items-center text-sm text-gray-500">
-                <i class="fa-solid fa-location-dot text-[#F8644D] mr-1"></i>
-                <span class="line-through">${post.location}</span>
-              </div>
-              <div class="flex items-center text-sm text-green-500 font-medium">
-                <i class="fa-solid fa-map-location-dot mr-1"></i> ${
-                  post.newLocation
-                }
-              </div>
-            </div>
-          </div>
- <div class="flex items-center gap-2 mt-4 flex-wrap">
-  <img
-    src="${post.contact.image}"
-    alt="Tác giả"
-    class="w-10 h-10 rounded-full object-cover transition-transform duration-300 cursor-pointer flex-shrink-0"
-onclick="event.stopPropagation();"
-    />
-  <div class="flex flex-grow gap-2 md:flex-row flex-wrap">
-    <button
-      class="flex items-center justify-center bg-[#DCA54A] text-white px-3 py-2 rounded-lg font-semibold text-sm w-full md:w-auto md:flex-1 hover:opacity-80 transition-colors"
-      onclick="event.stopPropagation(); window.location.href='tel:${post.contact.phone}'"
-    >
-      <i class="fa-solid fa-phone mr-2"></i> ${post.contact.phone}
-    </button>
-    <button
-      class="flex items-center justify-center bg-[linear-gradient(to_right,#10B981,#059669)] text-white px-3 py-2 rounded-lg font-semibold text-sm w-full md:w-auto md:flex-1 hover:opacity-80 transition-colors"
-      onclick="event.stopPropagation(); window.location.href='https://zalo.me/${post.contact.phone}'"
-    >
-      <i class="fa fa-envelope mr-2"></i> Yêu cầu tư vấn
-    </button>
   </div>
-  </div>
+</div>
+
       `;
       }
       function toggleMenu(element) {
@@ -2267,7 +2223,7 @@ function showTab(tabId) {
   tabContents.forEach((content) => content.classList.add("hidden"));
   tabs.forEach((tab) => {
     tab.classList.remove("text-[#2563EB]", "border-b-2", "border-[#2563EB]");
-    tab.classList.add("text-gray-500", "font-medium", "hover:text-[#2563EB]");
+    tab.classList.add("text-gray-500", "hover:text-[#2563EB]");
   });
 
   // Hiển thị nội dung của tab được chọn và cập nhật style
