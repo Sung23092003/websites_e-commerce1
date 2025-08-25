@@ -605,7 +605,7 @@ a {
     }
 }
 
-@media (max-width: 430px) {
+@media (max-width: 452px) {
     .category-text {
         min-height: 160px;
     }
