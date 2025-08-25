@@ -516,15 +516,22 @@ a {
   border-radius: 8px;
 }
 
-.category-item a.text-dark {
-  margin-top: auto; 
-  min-height: 40px; 
+.category-text {
+  flex: 1;
   display: flex;
-  align-items: center;
+  align-items: center;  
   justify-content: center;
+  width: 100%;
+  min-height: 56px;
+  padding: 5px; 
   text-align: center;
 }
 
+.category-text a {
+  font-size: 0.875rem; 
+  color: #000;
+  text-decoration: none;
+}
 
 .slick-slide {
     padding: 4px;
