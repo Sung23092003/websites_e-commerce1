@@ -5354,5 +5354,79 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
     </script>
+    <!-- phần category cho text -->
+<script>
+  function debounce(fn, wait) {
+    let t;
+    return function(...args) {
+      clearTimeout(t);
+      t = setTimeout(() => fn.apply(this, args), wait);
+    };
+  }
+
+  // Cân bằng chiều cao trong 1 container
+  function equalizeCategoryText(container) {
+    const nodes = container.querySelectorAll('.category-text');
+    if (!nodes.length) return;
+
+    // Reset trước khi đo
+    nodes.forEach(n => n.style.height = 'auto');
+
+    let max = 0;
+    nodes.forEach(n => {
+      const h = n.getBoundingClientRect().height;
+      if (h > max) max = h;
+    });
+
+    nodes.forEach(n => n.style.height = `${Math.ceil(max)}px`);
+  }
+
+  // Chờ ảnh trong container load xong
+  function onImagesReady(container, cb) {
+    const imgs = container.querySelectorAll('img');
+    if (!imgs.length) { cb(); return; }
+
+    let pending = imgs.length;
+    const done = () => { pending--; if (pending <= 0) cb(); };
+
+    imgs.forEach(img => {
+      if (img.complete) {
+        done();
+      } else {
+        img.addEventListener('load', done, { once: true });
+        img.addEventListener('error', done, { once: true });
+      }
+    });
+  }
+
+  (function initEqualize() {
+    const containers = document.querySelectorAll('.slick-category-design');
+    if (!containers.length) return;
+
+    const runAll = () => containers.forEach(equalizeCategoryText);
+    const runAllDebounced = debounce(runAll, 150);
+
+    document.addEventListener('DOMContentLoaded', () => {
+      containers.forEach(container => {
+        onImagesReady(container, () => equalizeCategoryText(container));
+      });
+
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(runAll);
+      }
+
+      window.addEventListener('resize', runAllDebounced);
+      window.addEventListener('orientationchange', runAll);
+      setTimeout(runAll, 0);
+    });
+
+    // Nếu dùng slick, gắn sự kiện để re-run sau khi slick reflow
+    if (window.jQuery) {
+      jQuery('.slick-category-design').on('init reInit setPosition afterChange', runAll);
+    }
+  })();
+</script>
+
+
   </body>
 </html>

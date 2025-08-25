@@ -517,15 +517,15 @@ a {
 }
 
 .category-text {
-  flex: 1;
   display: flex;
   align-items: center;  
   justify-content: center;
   width: 100%;
-  min-height: 56px;
   padding: 5px; 
   text-align: center;
+  height: auto; /* reset, để JS điều chỉnh */
 }
+
 
 .category-text a {
   font-size: 0.875rem; 
@@ -589,10 +589,6 @@ a {
         height: 80px;
     }
     
-    .category-text {
-        min-height: 80px;
-    }
-
     .fe-header .menu-link,
     .fe-header .offcanvas .foo_mid,
     .fe-header .offcanvas .sub-menu-item li {
@@ -605,11 +601,6 @@ a {
     }
 }
 
-@media (max-width: 452px) {
-    .category-text {
-        min-height: 160px;
-    }
-}
 
 
 /* .fe-footer */
