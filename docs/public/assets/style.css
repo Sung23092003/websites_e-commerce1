@@ -588,6 +588,10 @@ a {
         width: 80px;
         height: 80px;
     }
+    
+    .category-text {
+        min-height: 80px;
+    }
 
     .fe-header .menu-link,
     .fe-header .offcanvas .foo_mid,
@@ -598,6 +602,12 @@ a {
     .fe-header .header-search button,
     .fe-header .header-search input {
         font-size: 14px;
+    }
+}
+
+@media (max-width: 430px) {
+    .category-text {
+        min-height: 160px;
     }
 }
 
