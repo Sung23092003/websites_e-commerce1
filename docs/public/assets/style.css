@@ -1701,3 +1701,19 @@ button.slick-arrow.slick-disabled {
     top: 0 !important;
     position: fixed !important;
 }
+
+.navbar-nav .nav-link {
+  white-space: nowrap;   /* giữ nguyên từ, không bẻ chữ */
+  display: inline-flex;  /* căn icon + text trên 1 hàng */
+  align-items: center;   /* icon + text cùng trục giữa */
+  justify-content: center;
+}
+
+/* Cả menu căn giữa */
+.navbar-nav {
+  display: flex;
+  flex-wrap: wrap;       /* khi hết chỗ thì item tự rớt xuống hàng mới */
+  justify-content: center;
+  gap: 10px;             /* khoảng cách giữa các item (tùy chỉnh) */
+}
+

@@ -1670,14 +1670,13 @@ header .btn-close:before, header .btn-close:after {
 }
 
 .link-is-scroll {
-  opacity: 0;
-  -webkit-transition: all 0.3s;
+  opacity: 1;
   transition: all 0.3s;
 }
 
-.is-scrolling .link-is-scroll {
+/* .is-scrolling .link-is-scroll {
   opacity: 1;
-}
+} */
 
 .footer-2,
 .footer-3 {
