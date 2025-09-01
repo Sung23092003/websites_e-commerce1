@@ -1672,6 +1672,7 @@ header .btn-close:before, header .btn-close:after {
 .link-is-scroll {
   opacity: 1;
   transition: all 0.3s;
+  cursor: pointer;
 }
 
 /* .is-scrolling .link-is-scroll {
