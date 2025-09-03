@@ -52,7 +52,7 @@ body {
 /* .fe-header */
 
 .fe-header .header-top {
-    border-bottom: 1px solid #0282a5;
+    border-bottom: 1px solid red;
 }
 
 .fe-header .header-top .infomation-left {
@@ -356,7 +356,6 @@ body {
     background: white;
     z-index: 99;
     /* box-shadow: 0px 0px 22px 6px rgba(0, 0, 0, 0.3); */
-    border: none;
 }
 
 .fe-header .header-search {
