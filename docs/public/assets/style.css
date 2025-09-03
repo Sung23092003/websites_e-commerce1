@@ -355,7 +355,7 @@ body {
     top: -41px;
     background: white;
     z-index: 99;
-    box-shadow: 0px 0px 22px 6px rgba(0, 0, 0, 0.3);
+    /* box-shadow: 0px 0px 22px 6px rgba(0, 0, 0, 0.3); */
     border: none;
 }
 
@@ -372,25 +372,42 @@ body {
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
-
+/* sung */
 
 .fe-header .box-icon .icon {
-    border-radius: 50%;
-    border: 1px solid red;
-    padding: 4px;
-    display: flex;
-    align-items: center;
-    justify-self: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.05); 
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  transition: all 0.3s ease; 
 }
 
+.fe-header .box-icon .icon:hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.1); 
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+
+.fe-header .box-icon .icon svg,
 .fe-header .box-icon .icon img {
-    width: 100%;
-    height: 100%;
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
 }
 
+.fe-header .box-icon .icon:hover svg,
+.fe-header .box-icon .icon:hover img {
+  transform: scale(1.15);
+}
+
+/* sung kết */
 .fe-header .header-action .text,
 .fe-header .header-action .text * {
     font-size: 14px;
@@ -1703,17 +1720,23 @@ button.slick-arrow.slick-disabled {
 }
 
 .navbar-nav .nav-link {
-  white-space: nowrap;   /* giữ nguyên từ, không bẻ chữ */
-  display: inline-flex;  /* căn icon + text trên 1 hàng */
-  align-items: center;   /* icon + text cùng trục giữa */
-  justify-content: center;
+  white-space: nowrap;   
+  display: inline-flex;  
+  align-items: center;   
+  line-height: 1.2; 
+  padding: 9px;
 }
 
 /* Cả menu căn giữa */
 .navbar-nav {
   display: flex;
-  flex-wrap: wrap;       /* khi hết chỗ thì item tự rớt xuống hàng mới */
+  flex-wrap: wrap;       
   justify-content: center;
-  gap: 10px;             /* khoảng cách giữa các item (tùy chỉnh) */
+  gap: 10px;             
+  row-gap: 4px;
+}
+
+.marquee{
+    max-width: 50%;
 }
 
