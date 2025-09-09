@@ -3250,3 +3250,17 @@ header .btn-close:before, header .btn-close:after {
 .special-products .product-info-head {
   border-bottom: none;
 }
+
+
+
+/* sung */
+/* Ẩn tất cả header-bottom-item từ cái thứ 3 trở đi */ 
+.header-bottom-item:nth-of-type(n+3) {
+  display: none !important;
+}
+
+/* Khi scroll xuống thì hiện hết */
+#header-main-sticky.show.expanded .header-bottom-item {
+  display: block !important;
+}
+/* sung end */
