@@ -3252,13 +3252,31 @@ header .btn-close:before, header .btn-close:after {
 }
 
 /* sung */
-/* Ẩn tất cả header-bottom-item từ cái thứ 3 trở đi */ 
-.header-bottom-item:nth-of-type(n+3) {
-  display: none !important;
+
+/* 1. Trắng 50% */
+.bg-white-50 {
+  background-image: linear-gradient(to bottom, #fff, rgba(255,255,255,0.5));
 }
 
-/* Khi scroll xuống thì hiện hết */
-#header-main-sticky.show.expanded .header-bottom-item {
-  display: block !important;
+/* 2. Vàng đặc (alpha 1) */
+.bg-yellow-solid {
+  background-image: linear-gradient(to bottom, #DAA520, #DAA520);
 }
+
+/* 3. Vàng trong suốt 40% */
+.bg-yellow-40 {
+  background-image: linear-gradient(to bottom, #DAA520, rgba(255,255,255,0.4));
+}
+
+/* Khi header có nền vàng thì chữ trong menu chuyển thành trắng */
+.bg-yellow-solid .nav-link,
+.bg-yellow-solid .nav-link span {
+  color: #fff ; 
+}
+
+.bg-yellow-solid i {
+  color: #fff ;
+}
+
+
 /* sung end */
