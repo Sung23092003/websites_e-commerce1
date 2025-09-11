@@ -238,3 +238,11 @@ button.btn.btn-primary.add_to_cart {
 .product-box .product-box-body ul li {
     font-size: 15px;
 }
+
+/* sung */
+/* Khi có ít ảnh, ép slick-track đứng yên và căn giữa */
+.static-thumbs .slick-track {
+  transform: none !important;
+  display: flex !important;
+  justify-content: center !important;
+}
