@@ -481,6 +481,7 @@ a {
 .fe-header {
   position: relative;
   top: 0;
+  background-color: transparent;
 }
 
 .sticky-header-clone {
@@ -1006,10 +1007,23 @@ a {
             flex-direction: column;
   }
 }
-
+/* sung */
 body:not(.header-sticky) .fe-header {
-  position: sticky;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
 }
+
+/* Khi có sticky-header-clone.show thì gỡ fixed */
+body:has(.sticky-header-clone.show) .fe-header {
+  position: sticky;
+  top: 0;
+}
+
+/* sung end */
+
 body:not(.header-sticky) .fe-header .header-3 .bg {
   background-image: none;
   background-color: var(--primary);
@@ -3269,13 +3283,23 @@ header .btn-close:before, header .btn-close:after {
 }
 
 /* Khi header có nền vàng thì chữ trong menu chuyển thành trắng */
+/* header vàng, chữ trắng */
 .bg-yellow-solid .nav-link,
-.bg-yellow-solid .nav-link span {
+.bg-yellow-solid .nav-link span,
+.bg-yellow-40 .nav-link,
+.bg-yellow-40 .nav-link span {
   color: #fff ; 
 }
 
-.bg-yellow-solid i {
+.bg-yellow-solid i,
+.bg-yellow-40 i {
   color: #fff ;
+}
+
+.bg-yellow-solid .dropdown-toggle::after,
+.bg-yellow-40 .dropdown-toggle::after
+{
+color: #FFF;
 }
 
 
